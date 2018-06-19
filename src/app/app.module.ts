@@ -3,11 +3,14 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-
+import { MainNavComponent } from './main-nav/main-nav.component';
+import { MasonryGalleryAcrossComponent } from './masonry-gallery-across/masonry-gallery-across.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MainNavComponent,
+    MasonryGalleryAcrossComponent
   ],
   imports: [
     BrowserModule
