@@ -1,3 +1,5 @@
+<div class="main-navbar-placeholder" [hidden]="!navbarIsFixed"></div>
+
 <nav class="main-navbar-container" id="main-navbar" [class.navbar-fixed-top]="navbarIsFixed">
   <div class="container-fluid">
     <a href="" class="button-default logo1">
@@ -10,6 +12,7 @@
     </button>
   </div>
 </nav>
+
 <div [style.display]="navOn ? 'flex' : 'none'" class="modal-window" id="main-nav-modal-window">
   <ul class="nav-list">
     <li><a href="">Portfolio</a></li>

@@ -58,6 +58,15 @@ export class AppComponent implements OnInit {
     { id: 48, name: 'img 1', url: 'https://picsum.photos/200/300/?random' }
   ];
 
+  portfolio = [
+    { id: 1, name: 'Landscapes', url: 'https://picsum.photos/200/200/?random' },
+    { id: 2, name: 'Portraits', url: 'https://picsum.photos/201/201/?random' },
+    { id: 3, name: 'Nature', url: 'https://picsum.photos/202/202/?random' },
+    { id: 4, name: 'Urban', url: 'https://picsum.photos/203/203/?random' },
+    { id: 5, name: 'Streets', url: 'https://picsum.photos/204/204/?random' },
+    { id: 6, name: 'Patterns', url: 'https://picsum.photos/205/205/?random' }
+  ];
+
 
   myMessage = 'My Massage';
   ngOnInit() {}

@@ -1,0 +1,42 @@
+<section class="container-slider" >
+  <a id="scroll-left"
+     class=" button-scroll button-scroll-left"
+     (click)="scrollSliderX(-0.8)"
+  >
+    <span class="glyphicon glyphicon-menu-left"></span>
+  </a>
+  <a id="scroll-right"
+     (click)="scrollSliderX(0.8)"
+  >
+    <span class="glyphicon glyphicon-menu-right button-scroll button-scroll-right"></span>
+  </a>
+
+
+  <div id="slider-thumbnail" class="container-thumbnail-slider"
+       #sliderContainer
+       (scroll)="onSliderScroll($event)"
+  >
+
+    <div class="container-fluid container-thumbnail-images" #slider>
+
+      <ng-container *ngFor="let thumbnail of thumbnailsToShow; let idx = index">
+        <div class="thumbnail-images thumbnail-hover-effect-bottom"
+             *ngIf="thumbnail.isLoaded"
+             #thumbnailImg
+             (click)="cuttentImageIdx=idx"
+        >
+          <a>
+            <img  src="{{thumbnail.url}}" (error)="thumbnail.isLoaded=false" alt="" [style.height]="imageHeight+'px'">
+            <div class="caption-bottom">
+              <span>{{thumbnail.name}}</span>
+            </div>
+          </a>
+        </div>
+      </ng-container>
+
+      <h4 *ngIf="thumbnailsToShow.length < thumbnails.length"> Loading...</h4>
+
+    </div>
+
+  </div>
+</section>

@@ -1,13 +1,20 @@
 <app-main-nav></app-main-nav>
 
 <div class="container-fluid">
+  <app-portfolio-thumbnails [portfolio]="portfolio"></app-portfolio-thumbnails>
   <h1> Albums </h1>
-  <button (click)="cutThumbnails()">cut thumbnails</button>
-  <app-masonry-gallery-across
+  <app-thumbnails-slider
     [thumbnails]="thumbnails"
-    [maxRowH]="300"
-    [itemsNumber]="8">
-  </app-masonry-gallery-across>
+    [itemsNumber]="8"
+    [imageHeight]="300"
+  >
+  </app-thumbnails-slider>
+  <button (click)="cutThumbnails()">cut thumbnails</button>
+  <!--<app-masonry-gallery-across-->
+    <!--[thumbnails]="thumbnails"-->
+    <!--[maxRowH]="300"-->
+    <!--[itemsNumber]="8">-->
+  <!--</app-masonry-gallery-across>-->
 </div>
 <br><br><br><br><br><br><br><br><br><br>
 
