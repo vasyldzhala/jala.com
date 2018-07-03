@@ -265,6 +265,68 @@ a, a:hover {
   opacity: 0;
 }
 
+/*masonry-gallery-down *************************************** */
+.masonry-gallery-down {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  -ms-flex-line-pack: start;
+  align-content: flex-start;
+  height: 800px;
+  padding: 0;
+  margin: 10px;
+  opacity: 1;
+}
+
+@media (min-width: 1200px) {
+  .masonry-gallery-down .thumbnail-item {
+    width: 20%;
+  }
+}
+@media (min-width: 992px) and (max-width: 1200px) {
+  .masonry-gallery-down .thumbnail-item  {
+    width: 25%;
+  }
+}
+@media (min-width: 768px) and (max-width: 992px) {
+  .masonry-gallery-down .thumbnail-item  {
+    width: 33.333%;
+  }
+}
+@media (min-width: 500px) and (max-width: 768px) {
+  .masonry-gallery-down .thumbnail-item  {
+    width: 50%;
+  }
+}
+@media (max-width: 500px) {
+  .masonry-gallery-down .thumbnail-item  {
+    width: 100%;
+  }
+}
+.masonry-gallery-down .thumbnail-item {
+  padding: 5px; /* Padding might be changed */
+  margin: 0; /* Don't change! */
+  box-sizing: border-box;
+  position: relative;
+}
+.masonry-gallery-down .thumbnail-item img {
+  display: block;
+  box-sizing: border-box;
+  width: 100%; /* Don't change! */
+  padding: 2px; /* Padding might be changed */
+  /*border: 2px solid #ccc; !* Border might be changed *!*/
+  margin: 0; /* Don't change! Instead you can add padding in .thumbnail-item class  */
+}
+
 /*Styles for anchors and captions*/
 .thumbnail-item {
   position: relative;

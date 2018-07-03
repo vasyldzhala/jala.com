@@ -8,6 +8,7 @@ import { MasonryGalleryAcrossComponent } from './masonry-gallery-across/masonry-
 import { PortfolioThumbnailsComponent } from './portfolio-thumbnails/portfolio-thumbnails.component';
 import { ThumbnailsSliderComponent } from './thumbnails-slider/thumbnails-slider.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { MasonryGalleryDownComponent } from './masonry-gallery-down/masonry-gallery-down.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     MainNavComponent,
     MasonryGalleryAcrossComponent,
     PortfolioThumbnailsComponent,
-    ThumbnailsSliderComponent
+    ThumbnailsSliderComponent,
+    MasonryGalleryDownComponent
   ],
   imports: [
     BrowserModule,

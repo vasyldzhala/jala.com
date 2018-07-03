@@ -42,7 +42,7 @@ export class AppComponent implements OnInit {
     { id: 32, name: 'img 1', url: 'https://picsum.photos/200/300/?random' },
     { id: 33, name: 'img 1', url: 'https://picsum.photos/200/300/?random' },
     { id: 34, name: 'img 2', url: 'https://picsum.photos/300/200/?random' },
-    { id: 35, name: 'img 3', url: 'https://picsum.photos/300/200/?random' },
+    { id: 35, name: 'img 3', url: 'https://picsum11.photos/300/200/?random' },
     { id: 36, name: 'img 4', url: 'https://picsum.photos/200/300/?random' },
     { id: 37, name: 'img 5', url: 'https://picsum.photos/200/200/?random' },
     { id: 38, name: 'img 6', url: 'https://picsum.photos/200/200/?random' },
@@ -66,6 +66,8 @@ export class AppComponent implements OnInit {
     { id: 5, name: 'Streets', url: 'https://picsum.photos/204/204/?random' },
     { id: 6, name: 'Patterns', url: 'https://picsum.photos/205/205/?random' }
   ];
+
+  thumbnails1 = this.thumbnails.slice(0, 20);
 
 
   myMessage = 'My Massage';

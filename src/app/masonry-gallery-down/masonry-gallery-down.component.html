@@ -1,0 +1,12 @@
+<section class="container-fluid masonry-gallery-down" #masonryGallery>
+  <ng-container *ngFor="let thumbnail of thumbnails; trackBy: trackByImgId; let idx=index">
+    <div class="thumbnail-item thumbnail-hover-effect" *ngIf="isLoaded[idx]" #galleryItem >
+      <a href="">
+        <img alt="" src="{{thumbnail.url}}" (error)="onError(idx)" (load)="onLoad()">
+        <div class="caption-center">
+          <p>{{thumbnail.name}}</p>
+        </div>
+      </a>
+    </div>
+  </ng-container>
+</section>
