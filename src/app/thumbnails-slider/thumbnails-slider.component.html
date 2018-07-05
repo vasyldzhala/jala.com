@@ -23,12 +23,12 @@
         <div class="thumbnail-images thumbnail-hover-effect-bottom"
              *ngIf="isLoaded[idx]"
              #thumbnailImg
-             (click)="cuttentImageIdx=idx"
+             (click)="currentImageIdx=idx"
         >
           <a>
             <img  src="{{thumbnail.url}}"
 
-                  (error)="onError(idx)"
+                  (error)="onError(thumbnail)"
                   alt=""
                   [style.height]="imageHeight+'px'"
             >

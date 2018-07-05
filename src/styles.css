@@ -398,7 +398,7 @@ a, a:hover {
 .thumbnail-images {
   position: relative;
   padding: 0;
-  margin: 0 10px 15px 0;
+  margin: 0 10px 10px 0;
 }
 .thumbnail-images img {
   height: 300px;
@@ -418,3 +418,18 @@ a, a:hover {
   padding: 10px;
 }
 
+/*image slider*/
+.img-slider {
+  position: relative;
+  width: 100%;
+  height: 60vh;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.img-slider img {
+  height: 55vh;
+  width: auto;
+  cursor: pointer;
+}

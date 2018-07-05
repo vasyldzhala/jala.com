@@ -33,14 +33,14 @@ export class MasonryGalleryDownComponent implements OnInit, OnChanges, AfterView
     this.isLoaded = new Array(this.thumbnails.length);
     this.isLoaded.fill(true);
     this.areImagesAdded = true;
-    console.log('OnChanges', changes);
+    // console.log('OnChanges', changes);
   }
 
   ngOnInit() {
   }
 
   ngAfterViewChecked() {
-    console.log('AfrerViewChecked');
+    // console.log('AfrerViewChecked');
     if (this.areImagesAdded && !this.isGalleryAligned) {
       this.isGalleryAligned = true;
       setTimeout(
@@ -68,14 +68,14 @@ export class MasonryGalleryDownComponent implements OnInit, OnChanges, AfterView
     }
   }
 
-  onError(i: number) {
-    this.isLoaded[i] = false;
-    console.log('Load image error!');
+  onError(thumbnail: Thumbnail) {
+    this.isLoaded[this.thumbnails.indexOf(thumbnail)] = false;
+    console.log('Load image error!', thumbnail);
   }
 
   onLoad() {
     this.areImagesAdded = true;
-    console.log('onLoad');
+    // console.log('onLoad');
   }
 
   alignGallery() {

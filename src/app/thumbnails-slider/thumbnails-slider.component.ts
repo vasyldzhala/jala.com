@@ -1,6 +1,5 @@
 import {
-  Component, Input, OnChanges, SimpleChanges, Renderer2, ViewChild, ElementRef, ViewChildren, QueryList,
-  AfterViewChecked
+  Component, Input, OnChanges, SimpleChanges, Renderer2, ViewChild, ElementRef
 } from '@angular/core';
 
 interface Thumbnail {
@@ -14,13 +13,12 @@ interface Thumbnail {
   templateUrl: './thumbnails-slider.component.html',
   styleUrls: ['./thumbnails-slider.component.css'],
 })
-export class ThumbnailsSliderComponent implements OnChanges, AfterViewChecked {
+export class ThumbnailsSliderComponent implements OnChanges {
 
   private thumbnailsToShow: Thumbnail[] = [];
   private isLoaded: boolean[];
   private isScrolled = false;
   private areImagesAdded = false;
-  private images: Array<ElementRef>;
   private currentImageIdx = 1;
 
   constructor(private rend: Renderer2) {}
@@ -30,7 +28,6 @@ export class ThumbnailsSliderComponent implements OnChanges, AfterViewChecked {
   @Input() imageHeight: number = 300;
   @ViewChild('sliderContainer') sliderContainer: ElementRef;
   @ViewChild('slider') slider: ElementRef;
-  @ViewChildren('thumbnailImg') thumbnailImgs: QueryList<ElementRef>;
 
   ngOnChanges(changes: SimpleChanges) {
     console.log('OnChanges!', changes);
@@ -41,19 +38,13 @@ export class ThumbnailsSliderComponent implements OnChanges, AfterViewChecked {
     this.currentImageIdx = 1;
   }
 
-  ngAfterViewChecked() {
-    if (this.areImagesAdded) {
-      this.images = this.thumbnailImgs.toArray();
-      this.areImagesAdded = false;
-    }
-  }
-
-  onError(idx: number) {
-    console.log('Load image error!');
-    this.isLoaded[idx] = false;
+  onError(thumbnail: Thumbnail) {
+    console.log('Load image error!', thumbnail);
+    this.isLoaded[this.thumbnailsToShow.indexOf(thumbnail)] = false;
   }
 
   scrollSliderX(x, frames = 20) {
+    // Version with requestAnimationFrame using ****************
     let shift: number, repl: number;
     let i = 0;
     const elem = this.sliderContainer.nativeElement;

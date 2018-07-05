@@ -2,7 +2,7 @@
   <ng-container *ngFor="let thumbnail of thumbnails; trackBy: trackByImgId; let idx=index">
     <div class="thumbnail-item thumbnail-hover-effect" *ngIf="isLoaded[idx]" #galleryItem >
       <a href="">
-        <img alt="" src="{{thumbnail.url}}" (error)="onError(idx)" (load)="onLoad()">
+        <img alt="" src="{{thumbnail.url}}" (error)="onError(thumbnail)" (load)="onLoad()">
         <div class="caption-center">
           <p>{{thumbnail.name}}</p>
         </div>

@@ -1,0 +1,57 @@
+<section class="container-slider">
+
+
+  <div class="img-slider">
+    <a id="scroll-left"
+       class=" button-scroll button-scroll-left "
+       (click)="scrollSliderX(-1)"
+    >
+      <span class="glyphicon glyphicon-menu-left"></span>
+    </a>
+    <a id="scroll-right"
+       class="button-scroll button-scroll-right"
+       (click)="scrollSliderX(1)"
+    >
+      <span class="glyphicon glyphicon-menu-right "></span>
+    </a>
+
+
+    <a (click)="scrollSliderX(1)">
+      <img src="{{thumbnailsToShowFiltered[currentImageIdx].url}}">
+    </a>
+  </div>
+
+  <div id="slider-thumbnail" class="container-thumbnail-slider"
+       #sliderContainer
+       (scroll)="onSliderScroll($event)"
+  >
+
+  <div class="container-fluid container-thumbnail-images" #slider>
+
+    <ng-container *ngFor="let thumbnail of thumbnailsToShowFiltered; let idx = index">
+      <div class="thumbnail-images thumbnail-hover-effect-bottom"
+
+           #thumbnailImg
+           (click)="currentImageIdx=idx"
+      >
+        <a>
+          <img  src="{{thumbnail.url}}"
+
+                (error)="onError(thumbnail)"
+                alt=""
+                [style.height]="imageHeight+'px'"
+          >
+          <!--(error)="thumbnail.isLoaded=false"-->
+          <div class="caption-bottom">
+            <span>{{thumbnail.name}}</span>
+          </div>
+        </a>
+      </div>
+    </ng-container>
+
+    <h4 *ngIf="thumbnailsToShow.length < thumbnails.length"> Loading...</h4>
+
+  </div>
+
+  </div>
+</section>
