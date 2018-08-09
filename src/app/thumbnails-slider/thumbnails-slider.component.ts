@@ -30,7 +30,6 @@ export class ThumbnailsSliderComponent implements OnChanges {
   @ViewChild('slider') slider: ElementRef;
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log('OnChanges!', changes);
     this.isLoaded = new Array(this.thumbnails.length);
     this.isLoaded.fill(true);
     this.thumbnailsToShow = this.thumbnails.slice(0, this.itemsNumber);

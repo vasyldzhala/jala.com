@@ -16,32 +16,29 @@
     </a>
 
 
-    <a (click)="scrollSliderX(1)">
+    <a (click)="scrollSliderX(1)" *ngIf="!(thumbnailsToShowFiltered[currentImageIdx] === undefined)">
       <img src="{{thumbnailsToShowFiltered[currentImageIdx].url}}">
     </a>
   </div>
 
   <div id="slider-thumbnail" class="container-thumbnail-slider"
        #sliderContainer
-       (scroll)="onSliderScroll($event)"
+       (scroll)="onSliderScroll()"
   >
 
   <div class="container-fluid container-thumbnail-images" #slider>
 
     <ng-container *ngFor="let thumbnail of thumbnailsToShowFiltered; let idx = index">
       <div class="thumbnail-images thumbnail-hover-effect-bottom"
-
            #thumbnailImg
            (click)="currentImageIdx=idx"
       >
         <a>
           <img  src="{{thumbnail.url}}"
-
                 (error)="onError(thumbnail)"
                 alt=""
                 [style.height]="imageHeight+'px'"
           >
-          <!--(error)="thumbnail.isLoaded=false"-->
           <div class="caption-bottom">
             <span>{{thumbnail.name}}</span>
           </div>

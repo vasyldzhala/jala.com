@@ -39,22 +39,18 @@ export class MasonryGalleryAcrossComponent implements OnInit, OnChanges, AfterVi
   trackByImgId(index: number, thumbnail: any) { return thumbnail.id; }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log('OnChanges!', changes);
     this.thumbnailsToShow = [];
     this.loadImages(this.thumbnails.slice(0, this.itemsNumber));
   }
 
   ngOnInit() {
-    console.log('OnInit!');
   }
 
   ngAfterViewInit() {
-    console.log('AfterViewInit');
   }
 
   ngAfterViewChecked() {
     if (this.areImagesLoaded) {
-      console.log('AfterViewChecked - add and align images!');
       this.images = this.imgs.toArray();
       this.contPadding = this.getContPadding(this.cont);
       this.itemShellAcross = this.getItemPaddingMargin(this.images[0]);
@@ -85,10 +81,8 @@ export class MasonryGalleryAcrossComponent implements OnInit, OnChanges, AfterVi
       this.isScrolledNow = true;
       Observable.of('').delay(this.timeGap)
         .subscribe( x => {
-          console.log('Scroll!')
           this.loadImages(this.thumbnails.slice(this.thumbnailsToShow.length,
             this.thumbnailsToShow.length + this.itemsNumber));
-          console.log('add imeges to view!');
           this.isScrolledNow = false;
         });
     }
@@ -116,7 +110,6 @@ export class MasonryGalleryAcrossComponent implements OnInit, OnChanges, AfterVi
           isLoaded = data.map((x) => {
             return (x === 'loaded' || x.type === 'load') ? true : false;
           });
-          console.log('loadImages', isLoaded);
           this.thumbnailsToShow = this.thumbnailsToShow.concat(items
             .map((item: Thumbnail, idx: number) => {
               if (isLoaded[idx]) { item.imgRatio = img[idx].naturalWidth / img[idx].naturalHeight; }
@@ -124,7 +117,6 @@ export class MasonryGalleryAcrossComponent implements OnInit, OnChanges, AfterVi
               return item;
             })
           );
-          // console.log(this.thumbnailsToShow);
           if (this.thumbnailsToShow.length > 0) { this.areImagesLoaded = true; }
         },
         (error) => {
@@ -157,7 +149,6 @@ export class MasonryGalleryAcrossComponent implements OnInit, OnChanges, AfterVi
   }
 
   private alignGallery() {
-    console.log('alignGallery');
 
     let thumbnailsToShowFiltered = this.thumbnailsToShow.filter(item =>  item.isLoaded);
 

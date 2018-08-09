@@ -1,4 +1,4 @@
-// Cribs for Angular
+// Cribs on Angular
 
 >npm install -g @angular/cli
 >ng new PROG_NAME
@@ -293,3 +293,33 @@ export class CarFilterPipe implements PipeTransform {
 }
 
 // ROUTER
+const appRoutes: Routes = [
+  { path: 'page', component: PageComponent },
+  { path: '', component: MainPageComponent }
+]; // a/router
+
+// modules:
+imports: [RouterModule.forRoot(appRoutes)]
+// app.component:
+<router-outlet></router-outlet>
+// app-routing.module.ts
+
+<a routerLink="/page" routerLinkActive="active">Page</a>
+<a routerLink="/page" 
+  routerLinkActive="active" 
+  [routerLinkActiveOptions]="{exact: true}"
+>
+  Page
+</a>
+
+// program routing 
+constructor(private router: Router, private route: ActivatedRoute) {}
+openPage() {
+  this.router.navigate(['/page']);
+this.router.navigate(['page'],{relativeTo: this.route});
+
+// url parameters
+  { path: 'page/:id', component: ItemComponent }
+  [routerLink]="['/page', item.id]"
+  // get 'id' from url in ItemComponent
+  constructor(private route: ActivatedRoute) {}

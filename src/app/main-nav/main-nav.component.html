@@ -2,7 +2,7 @@
 
 <nav class="main-navbar-container" id="main-navbar" [class.navbar-fixed-top]="navbarIsFixed">
   <div class="container-fluid">
-    <a href="" class="button-default logo1">
+    <a routerLink="/" (click)="navOn=false" class="button-default logo1">
       <img src="http://localhost:80/jala.com/src/img/jalalogo1.png" alt="">
     </a>
     <button class="button-default burger-menu1" id="main-nav-button"
@@ -15,9 +15,9 @@
 
 <div [style.display]="navOn ? 'flex' : 'none'" class="modal-window" id="main-nav-modal-window">
   <ul class="nav-list">
-    <li><a href="">Portfolio</a></li>
-    <li><a href="">Albums</a></li>
-    <li><a href="">About</a></li>
-    <li><a href="">Facebook link</a></li>
+    <li><a routerLink="/portfolio" (click)="toggleNav()">Portfolio</a></li>
+    <li><a routerLink="/" (click)="toggleNav()">Albums</a></li>
+    <li><a routerLink="/about" (click)="toggleNav()">About</a></li>
+    <li><a routerLink="/" (click)="toggleNav()">Facebook link</a></li>
   </ul>
 </div>

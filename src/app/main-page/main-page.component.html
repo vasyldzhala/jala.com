@@ -1,0 +1,25 @@
+<div class="container-fluid">
+
+  <app-portfolio-thumbnails
+    [portfolio]="portfolio"
+  >
+  </app-portfolio-thumbnails>
+
+  <h2 class="section-header">Last Added Images</h2>
+
+  <app-thumbnails-slider
+    [thumbnails]="thumbnails"
+    [itemsNumber]="8"
+    [imageHeight]="300"
+  >
+  </app-thumbnails-slider>
+
+  <h2 class="section-header">Albums</h2>
+
+  <app-masonry-gallery-down
+  [thumbnails]="albums"
+  ></app-masonry-gallery-down>
+
+</div>
+
+

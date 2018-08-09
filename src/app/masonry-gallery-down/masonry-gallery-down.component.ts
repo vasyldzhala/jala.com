@@ -48,7 +48,6 @@ export class MasonryGalleryDownComponent implements OnInit, OnChanges, AfterView
             this.alignGallery();
             this.isGalleryAligned = false;
             this.areImagesAdded = false;
-            console.log('alignGallery');
           },
         1000);
     }

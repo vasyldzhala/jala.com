@@ -61,6 +61,7 @@ import 'rxjs/Rx';
  */
 import 'zone.js/dist/zone';  // Included with Angular CLI.
 
+import 'rxjs/Rx';
 
 
 /***************************************************************************************************

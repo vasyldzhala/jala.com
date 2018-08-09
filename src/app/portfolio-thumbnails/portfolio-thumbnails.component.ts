@@ -18,7 +18,6 @@ export class PortfolioThumbnailsComponent implements OnInit {
   @Input() portfolio: Album[];
 
   ngOnInit() {
-    console.log(this.portfolio);
   }
 
 }

@@ -7,9 +7,16 @@ import { MainNavComponent } from './main-nav/main-nav.component';
 import { MasonryGalleryAcrossComponent } from './masonry-gallery-across/masonry-gallery-across.component';
 import { PortfolioThumbnailsComponent } from './portfolio-thumbnails/portfolio-thumbnails.component';
 import { ThumbnailsSliderComponent } from './thumbnails-slider/thumbnails-slider.component';
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MasonryGalleryDownComponent } from './masonry-gallery-down/masonry-gallery-down.component';
 import { ImageSliderComponent } from './image-slider/image-slider.component';
+import {HttpModule} from '@angular/http';
+import {BatabaseService} from './batabase.service';
+import { MainPageComponent } from './main-page/main-page.component';
+import { MainFooterComponent } from './main-footer/main-footer.component';
+import { PortfolioPageComponent } from './portfolio-page/portfolio-page.component';
+import {AppRoutingModule} from './app-routing.module';
+import { AboutPageComponent } from './about-page/about-page.component';
 
 @NgModule({
   declarations: [
@@ -19,14 +26,19 @@ import { ImageSliderComponent } from './image-slider/image-slider.component';
     PortfolioThumbnailsComponent,
     ThumbnailsSliderComponent,
     MasonryGalleryDownComponent,
-    ImageSliderComponent
+    ImageSliderComponent,
+    MainPageComponent,
+    MainFooterComponent,
+    PortfolioPageComponent,
+    AboutPageComponent
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule
-
+    BrowserAnimationsModule,
+    HttpModule,
+    AppRoutingModule
   ],
-  providers: [],
+  providers: [BatabaseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

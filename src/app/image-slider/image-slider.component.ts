@@ -65,9 +65,10 @@ export class ImageSliderComponent implements OnChanges, AfterViewChecked  {
     if (this.currentImageIdx < 0) { this.currentImageIdx = 0; }
     if (this.currentImageIdx > this.images.length - 1) { this.currentImageIdx = this.images.length - 1; }
     this.images[this.currentImageIdx].nativeElement.scrollIntoView({block: 'start', behavior: 'smooth'});
+    this.onSliderScroll();
   }
 
-  onSliderScroll($event) {
+  onSliderScroll() {
     if (!this.isScrolled && this.thumbnailsToShow.length < this.thumbnails.length) {
       let scrollPoz = this.slider.nativeElement.scrollWidth - this.sliderContainer.nativeElement.scrollLeft
         - this.sliderContainer.nativeElement.clientWidth;
@@ -80,5 +81,4 @@ export class ImageSliderComponent implements OnChanges, AfterViewChecked  {
       setTimeout(() => this.isScrolled = false, 1000);
     }
   }
-
 }
