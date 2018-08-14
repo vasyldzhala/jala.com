@@ -17,6 +17,7 @@ import { MainFooterComponent } from './main-footer/main-footer.component';
 import { PortfolioPageComponent } from './portfolio-page/portfolio-page.component';
 import {AppRoutingModule} from './app-routing.module';
 import { AboutPageComponent } from './about-page/about-page.component';
+import { PortfolioAlbumComponent } from './portfolio-album/portfolio-album.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { AboutPageComponent } from './about-page/about-page.component';
     MainPageComponent,
     MainFooterComponent,
     PortfolioPageComponent,
-    AboutPageComponent
+    AboutPageComponent,
+    PortfolioAlbumComponent
   ],
   imports: [
     BrowserModule,

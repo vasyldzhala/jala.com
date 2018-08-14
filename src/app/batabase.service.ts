@@ -17,17 +17,19 @@ export class BatabaseService {
   images = [];
   albums = [];
   portfolio = [];
+  categories = [];
   isDataLoaded = false;
   dbRequest$: Observable<any>;
 
   getDataBase() {
-    this.dbRequest$ = Observable.zip(this.getImages(), this.getAlbums());
+    this.dbRequest$ = Observable.zip(this.getImages(), this.getAlbums(), this.getCategories());
     this.dbRequest$
       .subscribe(
         (data) => {
-          [this.images, this.albums] = data;
+          [this.images, this.albums, this.categories] = data;
           this.isDataLoaded = true;
-          this.portfolio = this.albums.slice(1, 7);
+          // this.portfolio = this.albums.slice(1, 7);
+          this.portfolio = this.categories.slice(1, 7);
         },
         (error) => {
           alert(error);
@@ -41,6 +43,10 @@ export class BatabaseService {
 
   getAlbums() {
     return this.httpReq('readalbums.php');
+  }
+
+  getCategories() {
+    return this.httpReq('readcategories.php');
   }
 
   httpReq(url, reqData = null) {

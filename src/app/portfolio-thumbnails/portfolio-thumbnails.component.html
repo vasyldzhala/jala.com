@@ -1,9 +1,12 @@
 <section class="container-fluid container-portfolio">
   <div class="col-md-4 col-sm-6 col-sx-12 thumbnail-portfolio thumbnail-hover-effect"
-  *ngFor="let album of portfolio">
-    <a href="">
-      <img src="{{album.url}}" alt="">
-      <div class="caption-center"><span>{{album.name}}</span></div>
+  *ngFor="let category of portfolio">
+    <a [routerLink]="['/portfolio', category.id]"
+      (click)="scroll(scrollAnc)"
+    >
+      <img src="{{category.url}}" alt="">
+      <div class="caption-center"><span>{{category.name}}</span></div>
     </a>
   </div>
 </section>
+<div #scrollAnc> </div>

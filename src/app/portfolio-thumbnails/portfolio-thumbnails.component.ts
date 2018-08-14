@@ -20,4 +20,8 @@ export class PortfolioThumbnailsComponent implements OnInit {
   ngOnInit() {
   }
 
+  scroll(element) {
+    element.scrollIntoView({behavior: 'smooth', block: 'start'});
+  }
+
 }

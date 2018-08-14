@@ -74,21 +74,14 @@ export class AppComponent implements OnInit {
   //   { id: 6, name: 'Patterns', url: 'https://picsum.photos/205/205/?random' }
   // ];
 
-  thumbnails = [];
-  albums = [];
-  portfolio = [];
+  // thumbnails = [];
+  // albums = [];
+  // portfolio = [];
 
   constructor(private db: BatabaseService) {}
 
   ngOnInit() {
     this.db.getDataBase();
-    this.db.dbRequest$.subscribe(
-      () => {
-        this.thumbnails = this.db.images;
-        this.albums = this.db.albums;
-        this.portfolio = this.db.portfolio;
-      }
-    );
   }
 
 }

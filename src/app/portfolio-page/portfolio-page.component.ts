@@ -8,6 +8,7 @@ import {BatabaseService} from '../batabase.service';
 })
 export class PortfolioPageComponent implements OnInit {
 
+  portfolio = [];
   thumbnails = [];
 
   constructor(private db: BatabaseService) { }
@@ -24,6 +25,7 @@ export class PortfolioPageComponent implements OnInit {
   }
 
   setPrVar() {
+    this.portfolio = this.db.portfolio;
     this.thumbnails = this.db.images.filter(item => item.isPortfolio);
   }
 

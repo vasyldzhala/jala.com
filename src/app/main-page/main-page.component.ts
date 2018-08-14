@@ -25,7 +25,7 @@ export class MainPageComponent implements OnInit {
     }
   }
 
-  setPrVar() {
+  private setPrVar() {
     this.thumbnails = this.db.images;
     this.albums = this.db.albums;
     this.portfolio = this.db.portfolio;
