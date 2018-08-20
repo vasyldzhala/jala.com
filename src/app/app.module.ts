@@ -18,6 +18,7 @@ import { PortfolioPageComponent } from './portfolio-page/portfolio-page.componen
 import {AppRoutingModule} from './app-routing.module';
 import { AboutPageComponent } from './about-page/about-page.component';
 import { PortfolioAlbumComponent } from './portfolio-album/portfolio-album.component';
+import { SliderPageComponent } from './slider-page/slider-page.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { PortfolioAlbumComponent } from './portfolio-album/portfolio-album.compo
     MainFooterComponent,
     PortfolioPageComponent,
     AboutPageComponent,
-    PortfolioAlbumComponent
+    PortfolioAlbumComponent,
+    SliderPageComponent
   ],
   imports: [
     BrowserModule,

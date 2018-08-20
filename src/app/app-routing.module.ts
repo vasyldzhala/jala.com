@@ -4,14 +4,20 @@ import {MainPageComponent} from './main-page/main-page.component';
 import {PortfolioPageComponent} from './portfolio-page/portfolio-page.component';
 import {AboutPageComponent} from './about-page/about-page.component';
 import {PortfolioAlbumComponent} from './portfolio-album/portfolio-album.component';
+import {ImageSliderComponent} from './image-slider/image-slider.component';
+import {SliderPageComponent} from "./slider-page/slider-page.component";
 
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
   { path: 'portfolio', component: PortfolioPageComponent,
     children: [
-      { path: ':categoryId', component: PortfolioAlbumComponent }
+      { path: ':categoryId', component: PortfolioAlbumComponent,
+        children: [
+          { path: 'slider/:imageId', component: SliderPageComponent }
+        ]
+      }
     ]
-},
+  },
   { path: 'about', component: AboutPageComponent }
 
 ];

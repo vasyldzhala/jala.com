@@ -1,54 +1,71 @@
-<section class="container-slider">
+<div class="container-slider">
 
+  <div class="image-slider-control-bar">
+    <a (click)="closeSlider()" >
+      <img class="control-button" src="http://localhost:80/jala.com/src/img/icons/icon_close4px1_w.svg" alt="">
+    </a>
+  </div>
 
   <div class="img-slider">
     <a id="scroll-left"
        class=" button-scroll button-scroll-left "
        (click)="scrollSliderX(-1)"
     >
-      <span class="glyphicon glyphicon-menu-left"></span>
+      <!--<span class="glyphicon glyphicon-menu-left"></span>-->
+      <img class="control-button" src="http://localhost:80/jala.com/src/img/icons/icon_left4px1_w.svg" alt="">
     </a>
     <a id="scroll-right"
        class="button-scroll button-scroll-right"
        (click)="scrollSliderX(1)"
     >
-      <span class="glyphicon glyphicon-menu-right "></span>
+      <img class="control-button" src="http://localhost:80/jala.com/src/img/icons/icon_right4px1_w.svg" alt="">
+      <!--<span class="glyphicon glyphicon-menu-right "></span>-->
     </a>
 
-
-    <a (click)="scrollSliderX(1)" *ngIf="!(thumbnailsToShowFiltered[currentImageIdx] === undefined)">
-      <img src="{{thumbnailsToShowFiltered[currentImageIdx].url}}">
+    <a (click)="scrollSliderX(1)" >
+      <img  #sliderImage>
     </a>
   </div>
 
-  <div id="slider-thumbnail" class="container-thumbnail-slider"
+  <div class="container-thumbnail-slider"
+       id="slider-thumbnail"
        #sliderContainer
        (scroll)="onSliderScroll()"
   >
 
-  <div class="container-fluid container-thumbnail-images" #slider>
+    <div
+      class="container-fluid container-thumbnail-images"
+      #slider
+    >
 
-    <ng-container *ngFor="let thumbnail of thumbnailsToShowFiltered; let idx = index">
+    <ng-container
+      *ngFor="let thumbnail of thumbnailsToShowFiltered; let idx = index">
+
       <div class="thumbnail-images thumbnail-hover-effect-bottom"
            #thumbnailImg
-           (click)="currentImageIdx=idx"
+           id="{{thumbnail.id}}"
+           (click)="router.navigate(setRouterLink(thumbnail.id))"
       >
         <a>
           <img  src="{{thumbnail.url}}"
                 (error)="onError(thumbnail)"
                 alt=""
-                [style.height]="imageHeight+'px'"
+
+
+
           >
+          <!--[ngClass]="{'thumbnail-active' : idx===currentImageIdx}"-->
           <div class="caption-bottom">
             <span>{{thumbnail.name}}</span>
           </div>
         </a>
       </div>
+
     </ng-container>
 
-    <h4 *ngIf="thumbnailsToShow.length < thumbnails.length"> Loading...</h4>
+    <!--<h4 *ngIf="thumbnailsToShow.length < thumbnails.length"> Loading...</h4>-->
 
   </div>
 
   </div>
-</section>
+</div>

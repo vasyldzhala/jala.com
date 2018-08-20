@@ -1,7 +1,7 @@
 <section class="container-fluid masonry-gallery-rows" #masonryGallery>
   <ng-container *ngFor="let thumbnail of thumbnailsToShow; trackBy: trackByImgId; let idx=index">
     <div class="thumbnail-item thumbnail-hover-effect" *ngIf="thumbnail.isLoaded">
-      <a href="">
+      <a [routerLink]="['slider', thumbnail.id]">
         <img alt="" #galleryImg>
         <div class="caption-center">
           <p>{{thumbnail.name}}</p>

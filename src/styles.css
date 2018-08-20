@@ -88,12 +88,12 @@ a, a:hover, a:focus {
   position: fixed;
   top: 0;
   z-index: 1000;
-  height: 80px;
+  height: 60px;
   background-color: rgba(255,255,255,0.9);
 }
 
 .navbar-fixed-top .logo1 img {
-  height: 80px;
+  height: 60px;
 }
 .logo1 {
   position: absolute;
@@ -109,10 +109,11 @@ a, a:hover, a:focus {
 }
 .logo1 img {
   height: 120px;
+  width: auto;
 }
 @media (max-aspect-ratio: 7/10) {
-  .logo1 img {
-    width: 60%;
+  .logo1 img, .navbar-fixed-top .logo1 img {
+    width: 40%;
     height: auto;
   }
 }
@@ -129,6 +130,10 @@ a, a:hover, a:focus {
   height: auto;
   opacity: 0.6;
 }
+.navbar-fixed-top .burger-menu1 img {
+  width: 60px;
+}
+
 .burger-menu1 img:hover {
   opacity: 1;
 }
@@ -353,6 +358,7 @@ a, a:hover, a:focus {
 /* thumbnails slider *********************************/
 .container-slider {
   position: relative;
+
 }
 .container-thumbnail-slider {
   width: calc(100% - 80px);
@@ -369,21 +375,27 @@ a, a:hover, a:focus {
   position: absolute;
   z-index: 600;
   top: 50%;
-  transform: scaleX(0.5) translateY(-50%);
+  transform: translateY(-50%);
   padding: 40px 0;
-  font-size: 60px;
-  color: #aaa;
+  /*font-size: 60px;*/
+}
+.button-scroll .control-button {
+  height: 40px;
+}
+
+.control-button {
+  opacity: 0.4;
   transition-duration: 0.5s;
 }
-.button-scroll:hover {
-  color: #888;
+.control-button:hover {
+  opacity: 0.9;
   cursor: pointer;
 }
 .button-scroll-left {
-  left: -10px;
+  left: 20px;
 }
 .button-scroll-right {
-  right: -10px;
+  right: 20px;
 }
 .container-thumbnail-images {
   padding: 0;
@@ -398,9 +410,10 @@ a, a:hover, a:focus {
   position: relative;
   padding: 0;
   margin: 0 10px 10px 0;
+  cursor: pointer;
 }
 .thumbnail-images img {
-  height: 300px;
+  height: 10vh;
   transition-duration: 0.5s;
 }
 .caption-bottom {
@@ -417,21 +430,65 @@ a, a:hover, a:focus {
   padding: 10px;
 }
 
-/*image slider*/
+/*image slider ********************************/
+.slider-page-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 2000;
+  background-color: black;
+}
+
+.section-header-slider {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+  z-index: 2100;
+  margin: 0;
+  color: white;
+  font-weight: 200;
+  width: 30%;
+}
+
 .img-slider {
   position: relative;
   width: 100%;
-  height: 60vh;
+  height: 85vh;
   margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 .img-slider img {
-  height: 55vh;
+  height: 70vh;
   width: auto;
   cursor: pointer;
 }
+
+.thumbnail-active {
+  border: solid 2px gray;
+}
+.image-slider-control-bar {
+  position: absolute;
+  z-index: 1300;
+  right: 10px;
+  top: 10px;
+  width: 40px;
+}
+.image-slider-control-bar a {
+  display: block;
+  float: right;
+  padding: 10px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+.image-slider-control-bar a img {
+  width: 100%;
+}
+
 
 /*footer*************************/
 .main-page-footer {
@@ -440,7 +497,7 @@ a, a:hover, a:focus {
   color: rgba(255, 255, 255, 0.6);
 }
 .footer-nav {
-  height: 140px;
+  height: 100px;
   position: relative;
   margin: 0;
   display: flex;
