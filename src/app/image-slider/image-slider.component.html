@@ -1,30 +1,43 @@
 <div class="container-slider">
 
   <div class="image-slider-control-bar">
+
     <a (click)="closeSlider()" >
       <img class="control-button" src="http://localhost:80/jala.com/src/img/icons/icon_close4px1_w.svg" alt="">
     </a>
+    <a (click)="toggleSliderState()" >
+      <img *ngIf = "sliderState=='withThumbnails'; else sliderStateIsFullScreen"
+           class="control-button"
+           src="http://localhost:80/jala.com/src/img/icons/icon_fullscr4px2_w.svg" alt="">
+      <ng-template #sliderStateIsFullScreen>
+        <img class="control-button" src="http://localhost:80/jala.com/src/img/icons/icon_cancelfullscr4px2_w.svg" alt="">
+      </ng-template>
+    </a>
   </div>
 
-  <div class="img-slider">
-    <a id="scroll-left"
-       class=" button-scroll button-scroll-left "
-       (click)="scrollSliderX(-1)"
-    >
-      <!--<span class="glyphicon glyphicon-menu-left"></span>-->
-      <img class="control-button" src="http://localhost:80/jala.com/src/img/icons/icon_left4px1_w.svg" alt="">
-    </a>
-    <a id="scroll-right"
-       class="button-scroll button-scroll-right"
-       (click)="scrollSliderX(1)"
-    >
-      <img class="control-button" src="http://localhost:80/jala.com/src/img/icons/icon_right4px1_w.svg" alt="">
-      <!--<span class="glyphicon glyphicon-menu-right "></span>-->
-    </a>
 
-    <a (click)="scrollSliderX(1)" >
-      <img  #sliderImage>
-    </a>
+  <div class="container-img-slider"
+         [@sliderState]="sliderState"
+       #containerSliderImage
+  >
+
+      <a id="scroll-left"
+         class=" button-scroll button-scroll-left "
+         (click)="scrollSliderX(-1)"
+      >
+        <img class="control-button" src="http://localhost:80/jala.com/src/img/icons/icon_left4px1_w.svg" alt="">
+      </a>
+      <a id="scroll-right"
+         class="button-scroll button-scroll-right"
+         (click)="scrollSliderX(1)"
+      >
+        <img class="control-button" src="http://localhost:80/jala.com/src/img/icons/icon_right4px1_w.svg" alt="">
+      </a>
+
+      <a (click)="scrollSliderX(1)" >
+        <img  class="img-slider" #sliderImage
+              [@sliderImageState]="sliderImageState">
+      </a>
   </div>
 
   <div class="container-thumbnail-slider"
@@ -44,17 +57,14 @@
       <div class="thumbnail-images thumbnail-hover-effect-bottom"
            #thumbnailImg
            id="{{thumbnail.id}}"
-           (click)="router.navigate(setRouterLink(thumbnail.id))"
+           (click)="moveSliderImage(thumbnail.id)"
       >
         <a>
           <img  src="{{thumbnail.url}}"
                 (error)="onError(thumbnail)"
                 alt=""
-
-
-
+                [@sliderThumbnailState]="(idx == currentImageIdx) ? sliderImageState : 'out'"
           >
-          <!--[ngClass]="{'thumbnail-active' : idx===currentImageIdx}"-->
           <div class="caption-bottom">
             <span>{{thumbnail.name}}</span>
           </div>
@@ -63,7 +73,7 @@
 
     </ng-container>
 
-    <!--<h4 *ngIf="thumbnailsToShow.length < thumbnails.length"> Loading...</h4>-->
+    <h4 *ngIf="thumbnailsToShow.length < thumbnails.length"> Loading...</h4>
 
   </div>
 

@@ -1,8 +1,12 @@
 import {
   Component, Input, OnChanges, SimpleChanges, Renderer2, ViewChild, ElementRef, ViewChildren, QueryList,
-  AfterViewChecked, OnInit
+  AfterViewChecked, OnInit, HostListener
 } from '@angular/core';
 import {PRIMARY_OUTLET, Router} from '@angular/router';
+import {
+  trigger, state, style, animate, transition
+} from '@angular/animations';
+import {Observable} from 'rxjs/Observable';
 
 interface Thumbnail {
   id: number;
@@ -13,7 +17,24 @@ interface Thumbnail {
 @Component({
   selector: 'app-image-slider',
   templateUrl: './image-slider.component.html',
-  styleUrls: ['./image-slider.component.css']
+  styleUrls: ['./image-slider.component.css'],
+  animations: [
+    trigger('sliderState', [
+      state('withThumbnails', style({ height: '85vh' })),
+      state('fullScreen',   style({ height: '100vh' })),
+      transition('withThumbnails <=> fullScreen', animate('200ms ease'))
+    ]),
+    trigger('sliderImageState', [
+      state('in', style({opacity: '1'})),
+      state('out', style({opacity: '0.5'})),
+      transition('in <=> out', animate('100ms ease')),
+    ]),
+    trigger('sliderThumbnailState', [
+      state('in', style({opacity: '0.3'})),
+      state('out', style({opacity: '1'})),
+      transition('in <=> out', animate('100ms ease')),
+    ])
+  ]
 })
 export class ImageSliderComponent implements OnChanges, OnInit, AfterViewChecked  {
 
@@ -25,6 +46,9 @@ export class ImageSliderComponent implements OnChanges, OnInit, AfterViewChecked
   private images: Array<ElementRef>;
   private currentImageIdx = undefined;
   private routerLink = [];
+  private sliderState = 'withThumbnails';
+  private sliderImageState = 'out';
+  private sliderAnimationTime = 100;
 
   constructor(private rend: Renderer2, private router: Router) {}
 
@@ -34,10 +58,33 @@ export class ImageSliderComponent implements OnChanges, OnInit, AfterViewChecked
   @ViewChild('sliderContainer') sliderContainer: ElementRef;
   @ViewChild('slider') slider: ElementRef;
   @ViewChild('sliderImage') sliderImage: ElementRef;
+  @ViewChild('containerSliderImage') containerSliderImage: ElementRef;
   @ViewChildren('thumbnailImg') thumbnailImgs: QueryList<ElementRef>;
+
+  @HostListener('document:keyup', ['$event']) onKeyupHandler(event: KeyboardEvent) {
+    switch (event.key) {
+      case 'Escape':
+        this.closeSlider();
+        break;
+      case 'ArrowRight':
+        this.scrollSliderX(1);
+        break;
+      case 'ArrowLeft':
+        this.scrollSliderX(-1);
+        break;
+      case 'f': case 'а':
+        this.toggleSliderState();
+        break;
+    }
+  }
+
+  @HostListener('window:resize') onResize() {
+    setTimeout(() => this.setImageSize(), 200);
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     this.areImagesAdded = true;
+    this.sliderImageState = 'out';
     this.isLoaded = new Array(this.thumbnails.length);
     this.isLoaded.fill(true);
     if (this.thumbnailsToShow.length > this.itemsNumber) {
@@ -58,12 +105,29 @@ export class ImageSliderComponent implements OnChanges, OnInit, AfterViewChecked
       this.areImagesAdded = false;
       this.currentImageIdx = this.getImageIdxById(this.imageId);
       if (this.images[this.currentImageIdx]) {
-        this.rend.setAttribute(this.sliderImage.nativeElement,
-          'src',
-          this.thumbnailsToShowFiltered[this.currentImageIdx].url);
-          setTimeout(() => { this.scrollThumbnails(); }, 100);
+        this.setImageSize();
+        setTimeout(() => { this.scrollThumbnails(); }, 100);
       }
     }
+  }
+
+  setImageSize() {
+    const image = new Image();
+    const cont = this.containerSliderImage.nativeElement;
+    let imageSizeRatio = 1;
+    image.src = this.thumbnailsToShowFiltered[this.currentImageIdx].url;
+    Observable.fromEvent(image, 'load').subscribe(() => {
+      ( (image.naturalWidth / image.naturalHeight) < (cont.clientWidth / cont.clientHeight) ) ?
+        imageSizeRatio = cont.clientHeight / image.naturalHeight :
+        imageSizeRatio = cont.clientWidth / image.naturalWidth;
+      this.rend.setStyle(this.sliderImage.nativeElement,
+        'height',
+        `${image.naturalHeight * imageSizeRatio - 80}px`);
+      this.rend.setAttribute(this.sliderImage.nativeElement,
+        'src',
+        this.thumbnailsToShowFiltered[this.currentImageIdx].url);
+      this.sliderImageState = 'in';
+    });
   }
 
   getImageIdxById(imageId) {
@@ -79,7 +143,6 @@ export class ImageSliderComponent implements OnChanges, OnInit, AfterViewChecked
     let nextIdx = this.currentImageIdx + step;
     if ( nextIdx >= this.images.length ) { nextIdx = 0; }
     if ( nextIdx < 0 ) { nextIdx = this.images.length - 1; }
-    this.currentImageIdx = this.getImageIdxById(this.imageId);
     return this.images[nextIdx].nativeElement.id;
   }
 
@@ -98,25 +161,39 @@ export class ImageSliderComponent implements OnChanges, OnInit, AfterViewChecked
   onThumbnailsAddRemove() {
     this.thumbnailsToShowFiltered = this.thumbnailsToShow.filter((el, index) => this.isLoaded[index]);
     this.areImagesAdded = true;
-
   }
 
   closeSlider() {
     this.router.navigate(this.routerLink.slice(0, this.routerLink.indexOf('slider')));
   }
 
+  toggleSliderState() {
+    this.sliderState = this.sliderState === 'withThumbnails' ? 'fullScreen' : 'withThumbnails';
+    setTimeout(() => this.setImageSize(), this.sliderAnimationTime * 2);
+  }
+
   scrollSliderX(x) {
     const routerLink = this.setRouterLink(this.getNextImageId(x));
-    this.router.navigate(routerLink);
-    // this.currentImageIdx = x > 0 ? this.currentImageIdx + 1 : this.currentImageIdx - 1;
-    // if (this.currentImageIdx < 0) { this.currentImageIdx = 0; }
-    // if (this.currentImageIdx > this.images.length - 1) { this.currentImageIdx = this.images.length - 1; }
-    this.scrollThumbnails();
-    this.onSliderScroll();
+    this.sliderImageState = 'out';
+    setTimeout(() => {
+        this.router.navigate(routerLink);
+        this.scrollThumbnails();
+        this.onSliderScroll();
+      },
+      this.sliderAnimationTime);
+  }
+
+  moveSliderImage(imageId) {
+    this.sliderImageState = 'out';
+    setTimeout(
+      () => this.router.navigate(this.setRouterLink(imageId)),
+      this.sliderAnimationTime
+    );
   }
 
   scrollThumbnails() {
     this.images[this.currentImageIdx].nativeElement.scrollIntoView({block: 'start', behavior: 'smooth'});
+    this.onSliderScroll();
   }
 
   onSliderScroll() {
