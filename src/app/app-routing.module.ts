@@ -4,8 +4,8 @@ import {MainPageComponent} from './main-page/main-page.component';
 import {PortfolioPageComponent} from './portfolio-page/portfolio-page.component';
 import {AboutPageComponent} from './about-page/about-page.component';
 import {PortfolioAlbumComponent} from './portfolio-album/portfolio-album.component';
-import {ImageSliderComponent} from './image-slider/image-slider.component';
-import {SliderPageComponent} from "./slider-page/slider-page.component";
+import {SliderPageComponent} from './slider-page/slider-page.component';
+import {NotFoundPageComponent} from './not-found-page/not-found-page.component';
 
 const appRoutes: Routes = [
   { path: '', component: MainPageComponent },
@@ -18,7 +18,8 @@ const appRoutes: Routes = [
       }
     ]
   },
-  { path: 'about', component: AboutPageComponent }
+  { path: 'about', component: AboutPageComponent },
+  { path: '**' , component: NotFoundPageComponent }
 
 ];
 

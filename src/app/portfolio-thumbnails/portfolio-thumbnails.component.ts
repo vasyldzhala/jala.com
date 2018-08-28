@@ -21,7 +21,9 @@ export class PortfolioThumbnailsComponent implements OnInit {
   }
 
   scroll(element) {
-    element.scrollIntoView({behavior: 'smooth', block: 'start'});
+    setTimeout(() => {
+      element.scrollIntoView({behavior: 'smooth', block: 'start'});
+    }, 2000);
   }
 
 }

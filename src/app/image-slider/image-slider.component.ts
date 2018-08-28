@@ -1,6 +1,6 @@
 import {
   Component, Input, OnChanges, SimpleChanges, Renderer2, ViewChild, ElementRef, ViewChildren, QueryList,
-  AfterViewChecked, OnInit, HostListener
+  AfterViewChecked, OnInit, HostListener, OnDestroy
 } from '@angular/core';
 import {PRIMARY_OUTLET, Router} from '@angular/router';
 import {
@@ -36,7 +36,7 @@ interface Thumbnail {
     ])
   ]
 })
-export class ImageSliderComponent implements OnChanges, OnInit, AfterViewChecked  {
+export class ImageSliderComponent implements OnChanges, OnInit, AfterViewChecked, OnDestroy  {
 
   private thumbnailsToShow: Thumbnail[] = [];
   private thumbnailsToShowFiltered: Thumbnail[] = [];
@@ -97,6 +97,7 @@ export class ImageSliderComponent implements OnChanges, OnInit, AfterViewChecked
   ngOnInit() {
     const urlSeg = this.router.parseUrl(this.router.url).root.children[PRIMARY_OUTLET].segments;
     this.routerLink = ['/', ...urlSeg.map(item => item.path)];
+    this.preventWindowScrolling();
   }
 
   ngAfterViewChecked() {
@@ -109,6 +110,20 @@ export class ImageSliderComponent implements OnChanges, OnInit, AfterViewChecked
         setTimeout(() => { this.scrollThumbnails(); }, 100);
       }
     }
+  }
+
+  ngOnDestroy() {
+    this.allowWindowScrolling();
+  }
+
+  preventWindowScrolling() {
+    const body = document.querySelector('body');
+    this.rend.setStyle(body, 'overflow-y', 'hidden');
+  }
+
+  allowWindowScrolling() {
+    const body = document.querySelector('body');
+    this.rend.setStyle(body, 'overflow-y', 'scroll');
   }
 
   setImageSize() {
@@ -134,6 +149,10 @@ export class ImageSliderComponent implements OnChanges, OnInit, AfterViewChecked
     if (!imageId) { return 0; }
     for (let i = 0; i < this.images.length; i++) {
       if ( +this.images[i].nativeElement.id === imageId ) { return i; }
+      if ( i === this.images.length - 1 ) {
+        console.log(`Error! Can't find image with id = ${imageId}`);
+        this.closeSlider();
+      }
     }
     // const image = this.images.find(item => (+item.nativeElement.id === imageId));
     // return this.images.indexOf( image );

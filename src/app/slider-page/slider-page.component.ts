@@ -39,14 +39,24 @@ export class SliderPageComponent implements OnInit {
 
   setPrVar() {
     if (this.categoryId) {
-      this.thumbnails = this.db.images
-        .filter(item => (item.isPortfolio && (+item.categoryId === +this.categoryId)));
-      this.sliderCaption = 'Portfolio: ' + this.getNameById(this.db.categories, this.categoryId);
+      if (this.db.categories.findIndex(item => (+item.id === +this.categoryId)) >= 0 ) {
+        this.thumbnails = this.db.images
+          .filter(item => (item.isPortfolio && (+item.categoryId === +this.categoryId)));
+        this.sliderCaption = 'Portfolio: ' + this.getNameById(this.db.categories, this.categoryId);
+      } else {
+        console.log(`Error! Can't find categoryId = ${this.categoryId}`);
+        this.router.navigate(['/portfolio']);
+      }
     }
     if (this.albumId) {
-      this.thumbnails = this.db.images
-        .filter(item => (+item.albumId === +this.albumId));
-      this.sliderCaption = 'Album: ' + this.getNameById(this.db.albums, this.albumId);
+      if (this.db.albums.findIndex(item => (+item.id === +this.albumId))) {
+        this.thumbnails = this.db.images
+          .filter(item => (+item.albumId === +this.albumId));
+        this.sliderCaption = 'Album: ' + this.getNameById(this.db.albums, this.albumId);
+      } else {
+        console.log(`Error! Can't find albumId = ${this.albumId}`);
+        this.router.navigate(['/albums']);
+      }
     }
 
     const imageName = this.getNameById(this.db.images, this.imageId);
@@ -61,6 +71,7 @@ export class SliderPageComponent implements OnInit {
   }
 
   getNameById(base: any[], id: number) {
-    return base.find(item => +item.id === +id).name;
+    const idx = base.findIndex(item => +item.id === +id);
+    return ( idx >= 0) ? base[idx].name : undefined;
   }
 }

@@ -323,3 +323,28 @@ this.router.navigate(['page'],{relativeTo: this.route});
   [routerLink]="['/page', item.id]"
   // get 'id' from url in ItemComponent
   constructor(private route: ActivatedRoute) {}
+
+// error handling
+{ path: '**', component: 404PageComponent }
+
+{ path: '404', component: 404PageComponent }
+{ path: '**', redirect: '404' }
+
+// guard
+@Injectable()
+export class AuthGuard implements CanActivate {
+  constructor(private auth: AuthServise) {}
+  canActivate(route: ActivatedRouteSnapshot, 
+    state: RouterStateSnapshot)
+    : Observable<boolean> | Promise<boolean> | boolean {
+       this.auth.isAuth().then((isLoggedIn) => {
+         if (isLoggedIn) { return true; }
+         else { return false; }
+
+    });   
+
+    
+  }
+}
+// routeng.module
+ { path: 'page', component: PageComponent, canActivate: [AuthGuard] }

@@ -1,4 +1,4 @@
-import {Component, HostListener, Inject, OnInit} from '@angular/core';
+import {Component, HostListener, Inject, OnInit, Renderer2} from '@angular/core';
 
 @Component({
   selector: 'app-main-nav',
@@ -9,8 +9,9 @@ export class MainNavComponent implements OnInit {
   windowIsScrolled: boolean = false;
   navbarIsFixed: boolean = false;
   navOn: boolean = false;
+  isMainPlaceholder = true;
 
-  constructor() { }
+  constructor(private rend: Renderer2) { }
   ngOnInit() {
   }
   toggleNav() {
@@ -18,12 +19,21 @@ export class MainNavComponent implements OnInit {
     if (this.navOn) { this.navbarIsFixed = true; }
     if (!this.navOn && !this.windowIsScrolled) { this.navbarIsFixed = false; }
   }
+  hideMainPlaceholder() {
+    const placeholder = document.querySelector('#main-placeholder');
+    this.rend.setStyle(placeholder, 'display', 'none');
+    window.scrollTo(0, 0);
+  }
 
   @HostListener('window:scroll') onScroll() {
-    let screenHeight = screen.height;
+    let navTogglePoint = this.isMainPlaceholder ? window.innerHeight : 100;
     let windowScroll = window.pageYOffset;
 
-    if (windowScroll >= screenHeight) {
+    if (windowScroll >= navTogglePoint) {
+      if (this.isMainPlaceholder) {
+        this.isMainPlaceholder = false;
+        this.hideMainPlaceholder();
+      }
       this.windowIsScrolled = true;
       if (!this.navbarIsFixed) {
         this.navbarIsFixed = true;

@@ -31,12 +31,19 @@ export class PortfolioAlbumComponent implements OnInit {
   }
 
   setPrVar() {
-    this.thumbnails = this.db.images.filter(item => (item.isPortfolio && +item.categoryId === +this.portfolioId)); // ));
-    this.categoryName = this.getCategoryById(this.portfolioId).name;
+    if (this.db.categories.findIndex(item => +item.id === +this.portfolioId) >= 0 ) {
+      this.thumbnails = this.db.images.filter(item => (item.isPortfolio && +item.categoryId === +this.portfolioId)); // ));
+      this.categoryName = this.getCategoryNameById(this.portfolioId);
+    } else {
+      console.log(`Error! Can't find categoryId = ${this.portfolioId}`);
+      this.router.navigate(['/portfolio']);
+    }
   }
 
-  getCategoryById(categoryId) {
-    return this.db.categories.find( item => (+item.id === +categoryId));
+  getCategoryNameById(categoryId) {
+//    return this.db.categories.find( item => (+item.id === +categoryId));
+    const idx = this.db.categories.findIndex(item => +item.id === +categoryId);
+    return ( idx >= 0) ? this.db.categories[idx].name : undefined;
   }
 
 }
