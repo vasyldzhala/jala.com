@@ -26,7 +26,7 @@
              #thumbnailImg
              (click)="currentImageIdx=idx"
         >
-          <a>
+          <a [routerLink]="['albums', thumbnail.albumId, 'slider', thumbnail.id]">
             <img  src="{{thumbnail.url}}"
 
                   (error)="onError(thumbnail)"

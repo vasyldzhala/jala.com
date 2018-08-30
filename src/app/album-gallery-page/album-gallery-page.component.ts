@@ -1,22 +1,24 @@
 import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute, Params, Router} from '@angular/router';
 import {BatabaseService} from '../batabase.service';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 import {ScrollService} from "../scroll.service";
 import {RoutingService} from "../routing.service";
 
 @Component({
-  selector: 'app-portfolio-album',
-  templateUrl: './portfolio-album.component.html',
-  styleUrls: ['./portfolio-album.component.css']
+  selector: 'app-album-gallery-page',
+  templateUrl: './album-gallery-page.component.html',
+  styleUrls: ['./album-gallery-page.component.css']
 })
-export class PortfolioAlbumComponent implements OnInit, OnDestroy {
+export class AlbumGalleryPageComponent implements OnInit, OnDestroy {
 
-  portfolioId: number;
+  albumId: number = undefined;
   thumbnails = [];
-  categoryName = '';
+  albumName = '';
   routerLink = [];
+  isScrolled = false;
 
-  constructor(private db: BatabaseService,
+
+  constructor(private  db: BatabaseService,
               private router: Router,
               private route: ActivatedRoute,
               private scroll: ScrollService,
@@ -34,8 +36,7 @@ export class PortfolioAlbumComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.routerLink = this.rout.getRouterLink();
     this.route.params.subscribe((params: Params) => {
-      this.portfolioId = +params['categoryId'];
-
+      this.albumId = +params['albumId'];
       if (this.db.isDataLoaded) {
         this.setPrVar();
       } else {
@@ -55,23 +56,22 @@ export class PortfolioAlbumComponent implements OnInit, OnDestroy {
   }
 
   setPrVar() {
-    if (this.db.categories.findIndex(item => +item.id === +this.portfolioId) >= 0 ) {
-      this.thumbnails = this.db.images.filter(item => (item.isPortfolio && +item.categoryId === +this.portfolioId)); // ));
-      this.categoryName = this.getCategoryNameById(this.portfolioId);
+    if (this.db.albums.findIndex(item => +item.id === +this.albumId) >= 0 ) {
+      this.thumbnails = this.db.images.filter(item => (item.isPortfolio && +item.albumId === +this.albumId)); // ));
+      this.albumName = this.getAlbumNameById(this.albumId);
     } else {
-      console.log(`Error! Can't find categoryId = ${this.portfolioId}`);
-      this.router.navigate(['/portfolio']);
+      console.log(`Error! Can't find album Id = ${this.albumId}`);
+      this.router.navigate(['/albums']);
     }
   }
 
   closeAlbum() {
-    this.router.navigate(this.routerLink.slice(0, this.routerLink.indexOf('portfolio')+1));
+    this.router.navigate(this.routerLink.slice(0, this.routerLink.indexOf('albums')+1));
   }
 
-  getCategoryNameById(categoryId) {
-//    return this.db.categories.find( item => (+item.id === +categoryId));
-    const idx = this.db.categories.findIndex(item => +item.id === +categoryId);
-    return ( idx >= 0) ? this.db.categories[idx].name : undefined;
+  getAlbumNameById(id) {
+    const idx = this.db.albums.findIndex(item => +item.id === +id);
+    return ( idx >= 0) ? this.db.albums[idx].name : undefined;
   }
 
 }

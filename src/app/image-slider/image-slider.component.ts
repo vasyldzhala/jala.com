@@ -7,6 +7,8 @@ import {
   trigger, state, style, animate, transition
 } from '@angular/animations';
 import {Observable} from 'rxjs/Observable';
+import {ScrollService} from "../scroll.service";
+import {RoutingService} from "../routing.service";
 
 interface Thumbnail {
   id: number;
@@ -50,7 +52,10 @@ export class ImageSliderComponent implements OnChanges, OnInit, AfterViewChecked
   private sliderImageState = 'out';
   private sliderAnimationTime = 100;
 
-  constructor(private rend: Renderer2, private router: Router) {}
+  constructor(private rend: Renderer2,
+              private router: Router,
+              private scroll: ScrollService,
+              private rout: RoutingService) {}
 
   @Input() thumbnails: Thumbnail[];
   @Input() imageId: number = undefined;
@@ -95,9 +100,8 @@ export class ImageSliderComponent implements OnChanges, OnInit, AfterViewChecked
   }
 
   ngOnInit() {
-    const urlSeg = this.router.parseUrl(this.router.url).root.children[PRIMARY_OUTLET].segments;
-    this.routerLink = ['/', ...urlSeg.map(item => item.path)];
-    this.preventWindowScrolling();
+    this.routerLink = this.rout.getRouterLink();
+    this.scroll.preventWindowScrolling();
   }
 
   ngAfterViewChecked() {
@@ -113,17 +117,7 @@ export class ImageSliderComponent implements OnChanges, OnInit, AfterViewChecked
   }
 
   ngOnDestroy() {
-    this.allowWindowScrolling();
-  }
-
-  preventWindowScrolling() {
-    const body = document.querySelector('body');
-    this.rend.setStyle(body, 'overflow-y', 'hidden');
-  }
-
-  allowWindowScrolling() {
-    const body = document.querySelector('body');
-    this.rend.setStyle(body, 'overflow-y', 'scroll');
+    // this.scroll.allowWindowScrolling();
   }
 
   setImageSize() {

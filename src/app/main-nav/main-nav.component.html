@@ -1,4 +1,4 @@
-<div class="main-navbar-placeholder" [hidden]="!navbarIsFixed"></div>
+<div class="main-navbar-placeholder" id="main-navbar-placeholder" [hidden]="!navbarIsFixed"></div>
 
 <nav class="main-navbar-container" id="main-navbar" [class.navbar-fixed-top]="navbarIsFixed">
   <div class="container-fluid">
@@ -16,7 +16,7 @@
 <div [style.display]="navOn ? 'flex' : 'none'" class="modal-window" id="main-nav-modal-window">
   <ul class="nav-list">
     <li><a routerLink="/portfolio" (click)="toggleNav()">Portfolio</a></li>
-    <li><a routerLink="/" (click)="toggleNav()">Albums</a></li>
+    <li><a routerLink="/albums" (click)="toggleNav()">Albums</a></li>
     <li><a routerLink="/about" (click)="toggleNav()">About</a></li>
     <li><a routerLink="/" (click)="toggleNav()">Facebook link</a></li>
   </ul>

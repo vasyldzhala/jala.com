@@ -20,6 +20,10 @@ import { AboutPageComponent } from './about-page/about-page.component';
 import { PortfolioAlbumComponent } from './portfolio-album/portfolio-album.component';
 import { SliderPageComponent } from './slider-page/slider-page.component';
 import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
+import { AlbumsPageComponent } from './albums-page/albums-page.component';
+import { AlbumGalleryPageComponent } from './album-gallery-page/album-gallery-page.component';
+import {ScrollService} from './scroll.service';
+import {RoutingService} from "./routing.service";
 
 @NgModule({
   declarations: [
@@ -36,7 +40,9 @@ import { NotFoundPageComponent } from './not-found-page/not-found-page.component
     AboutPageComponent,
     PortfolioAlbumComponent,
     SliderPageComponent,
-    NotFoundPageComponent
+    NotFoundPageComponent,
+    AlbumsPageComponent,
+    AlbumGalleryPageComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +50,7 @@ import { NotFoundPageComponent } from './not-found-page/not-found-page.component
     HttpModule,
     AppRoutingModule
   ],
-  providers: [BatabaseService],
+  providers: [BatabaseService, ScrollService, RoutingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

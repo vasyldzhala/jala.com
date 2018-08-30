@@ -1,4 +1,5 @@
 import {Component, HostListener, Inject, OnInit, Renderer2} from '@angular/core';
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-main-nav',
@@ -11,7 +12,7 @@ export class MainNavComponent implements OnInit {
   navOn: boolean = false;
   isMainPlaceholder = true;
 
-  constructor(private rend: Renderer2) { }
+  constructor(private  rend: Renderer2 ) { }
   ngOnInit() {
   }
   toggleNav() {
@@ -22,17 +23,19 @@ export class MainNavComponent implements OnInit {
   hideMainPlaceholder() {
     const placeholder = document.querySelector('#main-placeholder');
     this.rend.setStyle(placeholder, 'display', 'none');
-    window.scrollTo(0, 0);
+    // window.scrollTo(0, 0);
+    window.scroll(0, -window.innerHeight);
   }
 
   @HostListener('window:scroll') onScroll() {
-    let navTogglePoint = this.isMainPlaceholder ? window.innerHeight : 100;
+    // let navTogglePoint = this.isMainPlaceholder ? window.innerHeight : 100;
+    let navTogglePoint = window.innerHeight;
     let windowScroll = window.pageYOffset;
 
     if (windowScroll >= navTogglePoint) {
       if (this.isMainPlaceholder) {
         this.isMainPlaceholder = false;
-        this.hideMainPlaceholder();
+        // this.hideMainPlaceholder();
       }
       this.windowIsScrolled = true;
       if (!this.navbarIsFixed) {
