@@ -119,7 +119,7 @@
 .main-slider-logo {
   position: absolute;
   z-index: 100;
-  width: 50vh;
+  width: 40vh;
   top:70%;
   left: 50%;
   transform: translateX(-50%);

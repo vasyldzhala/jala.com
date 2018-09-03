@@ -346,5 +346,5 @@ export class AuthGuard implements CanActivate {
     
   }
 }
-// routeng.module
+// routing.module
  { path: 'page', component: PageComponent, canActivate: [AuthGuard] }

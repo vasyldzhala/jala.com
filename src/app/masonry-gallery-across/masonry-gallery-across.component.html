@@ -1,4 +1,4 @@
-<section class="container-fluid masonry-gallery-rows" #masonryGallery>
+<div class="container-fluid masonry-gallery-rows" #masonryGallery>
   <ng-container *ngFor="let thumbnail of thumbnailsToShow; trackBy: trackByImgId; let idx=index">
     <div class="thumbnail-item thumbnail-hover-effect" *ngIf="thumbnail.isLoaded">
       <a [routerLink]="['slider', thumbnail.id]">
@@ -9,7 +9,7 @@
       </a>
     </div>
   </ng-container>
-</section>
+</div>
 <h4 *ngIf="this.thumbnailsToShow.length < this.thumbnails.length; else loadingCompleted">
   {{this.thumbnailsToShow.length}} of {{this.thumbnails.length}}. Loading...
 </h4>

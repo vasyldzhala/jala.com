@@ -1,8 +1,8 @@
 import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
 import {BatabaseService} from '../batabase.service';
 import {ActivatedRoute, Params, Router} from '@angular/router';
-import {ScrollService} from "../scroll.service";
-import {RoutingService} from "../routing.service";
+import {ScrollService} from '../scroll.service';
+import {RoutingService} from '../routing.service';
 
 @Component({
   selector: 'app-album-gallery-page',
@@ -15,8 +15,6 @@ export class AlbumGalleryPageComponent implements OnInit, OnDestroy {
   thumbnails = [];
   albumName = '';
   routerLink = [];
-  isScrolled = false;
-
 
   constructor(private  db: BatabaseService,
               private router: Router,

@@ -28,6 +28,7 @@ export class MasonryGalleryAcrossComponent implements OnInit, OnChanges, AfterVi
   private contPadding: number;
   private itemShellAcross: number;
   private itemPaddingBorderDown: number;
+  private modalWindowEl;
 
   constructor(private rend: Renderer2) { }
 
@@ -44,6 +45,10 @@ export class MasonryGalleryAcrossComponent implements OnInit, OnChanges, AfterVi
   }
 
   ngOnInit() {
+    this.modalWindowEl = document.querySelectorAll('.album-gallery-container');
+    this.modalWindowEl[0].addEventListener('scroll', (event) => {
+      this.onScroll();
+    });
   }
 
   ngAfterViewInit() {
@@ -57,6 +62,7 @@ export class MasonryGalleryAcrossComponent implements OnInit, OnChanges, AfterVi
       this.itemPaddingBorderDown = this.getItemPaddingBorder(this.images[0]);
       this.alignGallery();
       this.areImagesLoaded = false;
+      this.onScroll();
     }
   }
 
@@ -65,8 +71,7 @@ export class MasonryGalleryAcrossComponent implements OnInit, OnChanges, AfterVi
       this.isResized = true;
       Observable.of('')
         .delay(this.timeGap)
-        .subscribe(x =>
-          {
+        .subscribe(x => {
             this.alignGallery();
             this.isResized = false;
           }

@@ -29,7 +29,7 @@ export class MainNavComponent implements OnInit {
 
   @HostListener('window:scroll') onScroll() {
     // let navTogglePoint = this.isMainPlaceholder ? window.innerHeight : 100;
-    let navTogglePoint = window.innerHeight;
+    let navTogglePoint = window.innerHeight + 40;
     let windowScroll = window.pageYOffset;
 
     if (windowScroll >= navTogglePoint) {
