@@ -24,6 +24,7 @@ import { AlbumsPageComponent } from './albums-page/albums-page.component';
 import { AlbumGalleryPageComponent } from './album-gallery-page/album-gallery-page.component';
 import {ScrollService} from './scroll.service';
 import {RoutingService} from "./routing.service";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import {RoutingService} from "./routing.service";
     BrowserModule,
     BrowserAnimationsModule,
     HttpModule,
+    HttpClientModule,
     AppRoutingModule
   ],
   providers: [BatabaseService, ScrollService, RoutingService],

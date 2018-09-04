@@ -13,7 +13,7 @@ section {
 }
 .section-header {
   position: relative;
-  margin: 60px 0 10px 0;
+  margin: 70px 0 10px 0;
   font-weight: 300;
 }
 
@@ -74,7 +74,7 @@ a, a:hover, a:focus {
 
 /*main navbar styles ********************************/
 .main-navbar-container {
-  background-color: rgba(255,255,255,0.5);
+  background-color: rgba(240,240,240,0.5);
   height: 140px;
   border: none;
   margin-bottom: 20px;
@@ -90,7 +90,7 @@ a, a:hover, a:focus {
   top: 0;
   z-index: 1000;
   height: 60px;
-  background-color: rgba(255,255,255,0.9);
+  background-color: rgba(240,240,240,0.9);
 }
 
 .navbar-fixed-top .logo1 img {
@@ -451,7 +451,7 @@ a, a:hover, a:focus {
   height: 30px;
 }
 .album-gallery-container {
-  height: calc(100vh - 110px);
+  height: calc(100vh - 120px);
   margin-top: 10px;
   overflow-x: hidden;
   overflow-y: scroll;
