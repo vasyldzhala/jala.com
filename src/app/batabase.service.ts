@@ -7,7 +7,7 @@ export class BatabaseService {
 
   constructor(private http: Http) {}
 
-  baseUrl = 'http://localhost:80/jala.com/src/app/db/';
+  baseUrl = 'http://jala.in.ua/db/'; // 'http://localhost:80/jala.com/src/app/db/';
   images = [];
   albums = [];
   portfolio = [];

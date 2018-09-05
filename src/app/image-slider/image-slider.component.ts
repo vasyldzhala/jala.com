@@ -22,7 +22,7 @@ interface Thumbnail {
   styleUrls: ['./image-slider.component.css'],
   animations: [
     trigger('sliderState', [
-      state('withThumbnails', style({ height: '85vh' })),
+      state('withThumbnails', style({ height: '86vh' })),
       state('fullScreen',   style({ height: '100vh' })),
       transition('withThumbnails <=> fullScreen', animate('200ms ease'))
     ]),
@@ -40,16 +40,16 @@ interface Thumbnail {
 })
 export class ImageSliderComponent implements OnChanges, OnInit, AfterViewChecked, OnDestroy  {
 
-  private thumbnailsToShow: Thumbnail[] = [];
-  private thumbnailsToShowFiltered: Thumbnail[] = [];
+  thumbnailsToShow: Thumbnail[] = [];
+  thumbnailsToShowFiltered: Thumbnail[] = [];
   private isLoaded: boolean[];
   private isScrolled = false;
   private areImagesAdded = false;
   private images: Array<ElementRef>;
   private currentImageIdx = undefined;
   private routerLink = [];
-  private sliderState = 'withThumbnails';
-  private sliderImageState = 'out';
+  sliderState = 'withThumbnails';
+  sliderImageState = 'out';
   private sliderAnimationTime = 100;
 
   constructor(private rend: Renderer2,
@@ -123,6 +123,8 @@ export class ImageSliderComponent implements OnChanges, OnInit, AfterViewChecked
   setImageSize() {
     const image = new Image();
     const cont = this.containerSliderImage.nativeElement;
+    let marg;
+    (window.innerWidth < 768) ? marg = 4 : marg = 80;
     let imageSizeRatio = 1;
     image.src = this.thumbnailsToShowFiltered[this.currentImageIdx].url;
     Observable.fromEvent(image, 'load').subscribe(() => {
@@ -131,7 +133,7 @@ export class ImageSliderComponent implements OnChanges, OnInit, AfterViewChecked
         imageSizeRatio = cont.clientWidth / image.naturalWidth;
       this.rend.setStyle(this.sliderImage.nativeElement,
         'height',
-        `${image.naturalHeight * imageSizeRatio - 80}px`);
+        `${image.naturalHeight * imageSizeRatio - marg}px`);
       this.rend.setAttribute(this.sliderImage.nativeElement,
         'src',
         this.thumbnailsToShowFiltered[this.currentImageIdx].url);

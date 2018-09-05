@@ -3,14 +3,14 @@
   <div class="image-slider-control-bar">
 
     <a (click)="closeSlider()" >
-      <img class="control-button" src="http://localhost:80/jala.com/src/img/icons/icon_close4px1_w.svg" alt="">
+      <img class="control-button" src="http://jala.in.ua/img/icons/icon_close4px1_w.svg" alt="">
     </a>
     <a (click)="toggleSliderState()" >
       <img *ngIf = "sliderState=='withThumbnails'; else sliderStateIsFullScreen"
            class="control-button"
-           src="http://localhost:80/jala.com/src/img/icons/icon_fullscr4px2_w.svg" alt="">
+           src="http://jala.in.ua/img/icons/icon_fullscr4px2_w.svg" alt="">
       <ng-template #sliderStateIsFullScreen>
-        <img class="control-button" src="http://localhost:80/jala.com/src/img/icons/icon_cancelfullscr4px2_w.svg" alt="">
+        <img class="control-button" src="http://jala.in.ua/img/icons/icon_cancelfullscr4px2_w.svg" alt="">
       </ng-template>
     </a>
   </div>
@@ -25,13 +25,13 @@
          class=" button-scroll button-scroll-left "
          (click)="scrollSliderX(-1)"
       >
-        <img class="control-button" src="http://localhost:80/jala.com/src/img/icons/icon_left4px1_w.svg" alt="">
+        <img class="control-button" src="http://jala.in.ua/img/icons/icon_left4px1_w.svg" alt="">
       </a>
       <a id="scroll-right"
          class="button-scroll button-scroll-right"
          (click)="scrollSliderX(1)"
       >
-        <img class="control-button" src="http://localhost:80/jala.com/src/img/icons/icon_right4px1_w.svg" alt="">
+        <img class="control-button" src="http://jala.in.ua/img/icons/icon_right4px1_w.svg" alt="">
       </a>
 
       <a (click)="scrollSliderX(1)" >

@@ -1,6 +1,6 @@
 import {
   AfterViewChecked, AfterViewInit, Component, ElementRef, Input, OnInit, QueryList, Renderer2, ViewChild,
-  ViewChildren, HostListener, SimpleChanges, OnChanges
+  ViewChildren, HostListener, SimpleChanges, OnChanges, OnDestroy
 } from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 
@@ -17,9 +17,9 @@ interface Thumbnail {
   styleUrls: ['./masonry-gallery-across.component.css']
 })
 
-export class MasonryGalleryAcrossComponent implements OnInit, OnChanges, AfterViewInit, AfterViewChecked {
+export class MasonryGalleryAcrossComponent implements OnInit, OnChanges, AfterViewInit, AfterViewChecked, OnDestroy {
 
-  private thumbnailsToShow: Thumbnail[] = [];
+  thumbnailsToShow: Thumbnail[] = [];
   private timeGap = 500;
   private areImagesLoaded = false;
   private isResized = false;
@@ -47,6 +47,12 @@ export class MasonryGalleryAcrossComponent implements OnInit, OnChanges, AfterVi
   ngOnInit() {
     this.modalWindowEl = document.querySelectorAll('.album-gallery-container');
     this.modalWindowEl[0].addEventListener('scroll', (event) => {
+      this.onScroll();
+    });
+  }
+
+  ngOnDestroy() {
+    this.modalWindowEl[0].removeEventListener('scroll', (event) => {
       this.onScroll();
     });
   }

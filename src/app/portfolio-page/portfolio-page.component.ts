@@ -26,7 +26,8 @@ export class PortfolioPageComponent implements OnInit {
 
   setPrVar() {
     this.portfolio = this.db.portfolio;
-    this.thumbnails = this.db.images.filter(item => item.isPortfolio);
+    this.thumbnails = this.db.images.filter(item => {
+      return +item.isPortfolio > 0 ; });
   }
 
 }

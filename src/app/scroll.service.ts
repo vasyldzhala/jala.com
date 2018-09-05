@@ -35,4 +35,9 @@ export class ScrollService {
     }
   }
 
+  scrollToApp() {
+    document.querySelector('#app')
+      .scrollIntoView({block: 'start', behavior: 'smooth'});
+  }
+
 }

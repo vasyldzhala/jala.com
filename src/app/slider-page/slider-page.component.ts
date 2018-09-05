@@ -41,7 +41,7 @@ export class SliderPageComponent implements OnInit {
     if (this.categoryId) {
       if (this.db.categories.findIndex(item => (+item.id === +this.categoryId)) >= 0 ) {
         this.thumbnails = this.db.images
-          .filter(item => (item.isPortfolio && (+item.categoryId === +this.categoryId)));
+          .filter(item => ((item.isPortfolio > 0) && (+item.categoryId === +this.categoryId)));
         this.sliderCaption = 'Portfolio: ' + this.getNameById(this.db.categories, this.categoryId);
       } else {
         console.log(`Error! Can't find categoryId = ${this.categoryId}`);
@@ -51,7 +51,8 @@ export class SliderPageComponent implements OnInit {
     if (this.albumId) {
       if (this.db.albums.findIndex(item => (+item.id === +this.albumId))) {
         this.thumbnails = this.db.images
-          .filter(item => (+item.albumId === +this.albumId));
+          .filter(item => (+item.albumId === +this.albumId))
+          .reverse();
         this.sliderCaption = 'Album: ' + this.getNameById(this.db.albums, this.albumId);
       } else {
         console.log(`Error! Can't find albumId = ${this.albumId}`);

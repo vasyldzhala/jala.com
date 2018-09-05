@@ -56,7 +56,7 @@ export class PortfolioAlbumComponent implements OnInit, OnDestroy {
 
   setPrVar() {
     if (this.db.categories.findIndex(item => +item.id === +this.portfolioId) >= 0 ) {
-      this.thumbnails = this.db.images.filter(item => (item.isPortfolio && +item.categoryId === +this.portfolioId)); // ));
+      this.thumbnails = this.db.images.filter(item => ((item.isPortfolio > 0) && +item.categoryId === +this.portfolioId)); // ));
       this.categoryName = this.getCategoryNameById(this.portfolioId);
     } else {
       console.log(`Error! Can't find categoryId = ${this.portfolioId}`);

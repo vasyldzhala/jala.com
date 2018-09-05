@@ -3,12 +3,12 @@
 <nav class="main-navbar-container" id="main-navbar" [class.navbar-fixed-top]="navbarIsFixed">
   <div class="container-fluid">
     <a routerLink="/" (click)="navOn=false" class="button-default logo1">
-      <img src="http://localhost:80/jala.com/src/img/icons/icon_jala_logo1.svg" alt="">
+      <img src="http://jala.in.ua/img/icons/icon_jala_logo1.svg" alt="">
     </a>
     <button class="button-default burger-menu1" id="main-nav-button"
             (click)="toggleNav()">
-      <img [hidden]="navOn" src="http://localhost:80/jala.com/src/img/icons/icon_burger4px1.svg" alt="">
-      <img [hidden]="!navOn" src="http://localhost:80/jala.com/src/img/icons/icon_close4px1.svg" alt="">
+      <img [hidden]="navOn" src="http://jala.in.ua/img/icons/icon_burger4px1.svg" alt="">
+      <img [hidden]="!navOn" src="http://jala.in.ua/img/icons/icon_close4px1.svg" alt="">
     </button>
   </div>
 </nav>
@@ -21,3 +21,7 @@
     <li><a routerLink="/" (click)="toggleNav()">Facebook link</a></li>
   </ul>
 </div>
+
+<a (click)="scroll.scrollToApp()" *ngIf="windowIsScrolled2" class="button-default to-app-button">
+  <img src="http://jala.in.ua/img/icons/icon_up4px1_w.svg" alt="">
+</a>

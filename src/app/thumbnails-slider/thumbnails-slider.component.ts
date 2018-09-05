@@ -15,7 +15,7 @@ interface Thumbnail {
 })
 export class ThumbnailsSliderComponent implements OnChanges {
 
-  private thumbnailsToShow: Thumbnail[] = [];
+  thumbnailsToShow: Thumbnail[] = [];
   private isLoaded: boolean[];
   private isScrolled = false;
   private areImagesAdded = false;

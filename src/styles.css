@@ -9,11 +9,11 @@ body {
 }
 
 section {
-  margin: 30px 0;
+  /*margin: 30px 0;*/
 }
 .section-header {
   position: relative;
-  margin: 70px 0 10px 0;
+  margin: 60px 0 10px 0;
   font-weight: 300;
 }
 
@@ -75,7 +75,7 @@ a, a:hover, a:focus {
 /*main navbar styles ********************************/
 .main-navbar-container {
   background-color: rgba(240,240,240,0.5);
-  height: 140px;
+  height: 110px;
   border: none;
   margin-bottom: 20px;
   position: relative;
@@ -109,7 +109,7 @@ a, a:hover, a:focus {
   font-weight: 500;
 }
 .logo1 img {
-  height: 80px;
+  height: 70px;
   width: auto;
 }
 @media (max-aspect-ratio: 7/10) {
@@ -127,7 +127,7 @@ a, a:hover, a:focus {
   font-size: 40px;
 }
 .burger-menu1 img {
-  width: 80px;
+  width: 70px;
   height: auto;
   opacity: 0.6;
 }
@@ -178,6 +178,22 @@ a, a:hover, a:focus {
   color: rgba(0,0,0,1);
 }
 
+.to-app-button {
+  position: fixed;
+  z-index: 800;
+  bottom: 30px;
+  right: 30px;
+  background-color: rgba(0,0,0,0.5);
+  border-radius: 10px;
+}
+
+.to-app-button img {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  opacity: 1;
+}
+
  /*portfolio thumbnails *****************************/
 .container-portfolio {
   padding: 0;
@@ -216,6 +232,7 @@ a, a:hover, a:focus {
 /*thumbnail hover effect **********************************/
 .thumbnail-hover-effect img {
   transition-duration: 0.5s;
+  overflow: hidden;
 }
 .thumbnail-hover-effect span, .thumbnail-hover-effect p {
   opacity: 0.3;
@@ -223,6 +240,7 @@ a, a:hover, a:focus {
 }
 .thumbnail-hover-effect:hover img {
   filter: grayscale(100%) brightness(90%);
+  /*transform: scale(1.01);*/
 }
 .thumbnail-hover-effect:hover span, .thumbnail-hover-effect:hover p {
   opacity: 1;
@@ -452,7 +470,7 @@ a, a:hover, a:focus {
 }
 .album-gallery-container {
   height: calc(100vh - 120px);
-  margin-top: 10px;
+  /*margin-top: 10px;*/
   overflow-x: hidden;
   overflow-y: scroll;
 }

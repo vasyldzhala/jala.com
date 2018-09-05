@@ -55,7 +55,9 @@ export class AlbumGalleryPageComponent implements OnInit, OnDestroy {
 
   setPrVar() {
     if (this.db.albums.findIndex(item => +item.id === +this.albumId) >= 0 ) {
-      this.thumbnails = this.db.images.filter(item => (item.isPortfolio && +item.albumId === +this.albumId)); // ));
+      this.thumbnails = this.db.images
+        .filter(item => (item.isPortfolio && +item.albumId === +this.albumId))
+        .reverse(); // ));
       this.albumName = this.getAlbumNameById(this.albumId);
     } else {
       console.log(`Error! Can't find album Id = ${this.albumId}`);
