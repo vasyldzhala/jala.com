@@ -22,8 +22,8 @@ interface Thumbnail {
   styleUrls: ['./image-slider.component.css'],
   animations: [
     trigger('sliderState', [
-      state('withThumbnails', style({ height: '86vh' })),
-      state('fullScreen',   style({ height: '100vh' })),
+      state('withThumbnails', style({ height: '86vh', paddingTop: '10px' })),
+      state('fullScreen',   style({ height: '100vh', paddingTop: '0' })),
       transition('withThumbnails <=> fullScreen', animate('200ms ease'))
     ]),
     trigger('sliderImageState', [
@@ -84,7 +84,10 @@ export class ImageSliderComponent implements OnChanges, OnInit, AfterViewChecked
   }
 
   @HostListener('window:resize') onResize() {
-    setTimeout(() => this.setImageSize(), 200);
+    setTimeout(() => {
+      this.setImageSize();
+      this.scrollThumbnails();
+    }, 500);
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -124,7 +127,7 @@ export class ImageSliderComponent implements OnChanges, OnInit, AfterViewChecked
     const image = new Image();
     const cont = this.containerSliderImage.nativeElement;
     let marg;
-    (window.innerWidth < 768) ? marg = 4 : marg = 80;
+    (window.innerWidth < 1025) ? marg = 4 : marg = 80;
     let imageSizeRatio = 1;
     image.src = this.thumbnailsToShowFiltered[this.currentImageIdx].url;
     Observable.fromEvent(image, 'load').subscribe(() => {
@@ -207,7 +210,7 @@ export class ImageSliderComponent implements OnChanges, OnInit, AfterViewChecked
   }
 
   scrollThumbnails() {
-    this.images[this.currentImageIdx].nativeElement.scrollIntoView({block: 'start', behavior: 'smooth'});
+    this.images[this.currentImageIdx].nativeElement.scrollIntoView({behavior: 'smooth'});
     this.onSliderScroll();
   }
 

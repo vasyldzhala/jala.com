@@ -2,10 +2,10 @@
 
   <div class="image-slider-control-bar">
 
-    <a (click)="closeSlider()" >
+    <a (click)="closeSlider()" title="Close Slider - Esc">
       <img class="control-button" src="http://jala.in.ua/img/icons/icon_close4px1_w.svg" alt="">
     </a>
-    <a (click)="toggleSliderState()" >
+    <a (click)="toggleSliderState()" title="Full screen on/off - F">
       <img *ngIf = "sliderState=='withThumbnails'; else sliderStateIsFullScreen"
            class="control-button"
            src="http://jala.in.ua/img/icons/icon_fullscr4px2_w.svg" alt="">
@@ -21,13 +21,13 @@
        #containerSliderImage
   >
 
-      <a id="scroll-left"
+      <a id="scroll-left" title="Previous <"
          class=" button-scroll button-scroll-left "
          (click)="scrollSliderX(-1)"
       >
         <img class="control-button" src="http://jala.in.ua/img/icons/icon_left4px1_w.svg" alt="">
       </a>
-      <a id="scroll-right"
+      <a id="scroll-right" title="Next >"
          class="button-scroll button-scroll-right"
          (click)="scrollSliderX(1)"
       >

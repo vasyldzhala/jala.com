@@ -1,13 +1,13 @@
 <footer class="container-fluid main-page-footer">
   <ul class="footer-nav">
     <li>
-      <a routerLink="/portfolio">Portfolio</a>
+      <a [routerLink]="['portfolio']" (click)="scrollToApp()">Portfolio</a>
     </li>
     <li>
-      <a routerLink="/albums">Albums</a>
+      <a routerLink="/albums" (click)="scrollToApp()">Albums</a>
     </li>
     <li>
-      <a routerLink="/about">About</a>
+      <a routerLink="/about" (click)="scrollToApp()">About</a>
     </li>
 
     <div class="footer-copyright">

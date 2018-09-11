@@ -36,6 +36,8 @@ export class MasonryGalleryDownComponent implements OnInit, OnChanges, AfterView
   }
 
   ngOnInit() {
+    // this.isLoaded = new Array(this.thumbnails.length);
+    // this.isLoaded.fill(true);
   }
 
   ngAfterViewChecked() {
@@ -77,7 +79,14 @@ export class MasonryGalleryDownComponent implements OnInit, OnChanges, AfterView
   alignGallery() {
     let contEl = this.cont.nativeElement;
     this.rend.setStyle(contEl, 'opacity', '0');
-    let contH = 300;
+
+    let itemsArea = 0;
+    for (let item of this.items.toArray()) {
+      itemsArea += item.nativeElement.clientWidth * item.nativeElement.clientHeight;
+    }
+    let contH = itemsArea / contEl.clientWidth + 100;
+
+
     this.rend.setStyle(contEl, 'height', `${contH}px`);
     while (contEl.clientWidth < contEl.scrollWidth) {
       contH += 50;

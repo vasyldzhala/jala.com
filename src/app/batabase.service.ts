@@ -55,5 +55,10 @@ export class BatabaseService {
       });
   }
 
+  getNameById(base: any[], id: number) {
+    const idx = base.findIndex(item => +item.id === +id);
+    return ( idx >= 0) ? base[idx].name : undefined;
+  }
+
 
 }

@@ -1,10 +1,31 @@
 <div class="main-navbar-placeholder" id="main-navbar-placeholder" [hidden]="!navbarIsFixed"></div>
 
 <nav class="main-navbar-container" id="main-navbar" [class.navbar-fixed-top]="navbarIsFixed">
-  <div class="container-fluid">
-    <a routerLink="/" (click)="navOn=false" class="button-default logo1">
-      <img src="http://jala.in.ua/img/icons/icon_jala_logo1.svg" alt="">
-    </a>
+  <div >
+
+    <div class="bread-crumbs">
+      <a (click)="navigateHome()" class="button-default logo1">
+        <img src="http://jala.in.ua/img/icons/icon_jala_logo2.svg" alt="">
+      </a>
+
+      <ng-container *ngIf="breadCrumbs[0]">
+        <span>/</span>
+        <ng-container *ngIf="breadCrumbs[0].link; else str">
+          <a routerLink="{{breadCrumbs[0].link}}">
+            <span>{{breadCrumbs[0].str | lowercase }}</span>
+          </a>
+        </ng-container >
+        <ng-template #str>
+          <span>{{breadCrumbs[0].str | lowercase }}</span>
+        </ng-template>
+
+      </ng-container>
+      <ng-container *ngIf="breadCrumbs[1]">
+        <span>/</span>
+        <span >{{breadCrumbs[1].str | lowercase }}</span>
+      </ng-container>
+    </div>
+
     <button class="button-default burger-menu1" id="main-nav-button"
             (click)="toggleNav()">
       <img [hidden]="navOn" src="http://jala.in.ua/img/icons/icon_burger4px1.svg" alt="">
@@ -15,10 +36,10 @@
 
 <div [style.display]="navOn ? 'flex' : 'none'" class="modal-window" id="main-nav-modal-window">
   <ul class="nav-list">
-    <li><a routerLink="/portfolio" (click)="toggleNav()">Portfolio</a></li>
-    <li><a routerLink="/albums" (click)="toggleNav()">Albums</a></li>
-    <li><a routerLink="/about" (click)="toggleNav()">About</a></li>
-    <li><a routerLink="/" (click)="toggleNav()">Facebook link</a></li>
+    <li><a [routerLink]="['portfolio']" (click)="navigateAndScrollApp()">Portfolio</a></li>
+    <li><a [routerLink]="['albums']" (click)="navigateAndScrollApp()">Albums</a></li>
+    <li><a [routerLink]="['about']" (click)="navigateAndScrollApp()">About</a></li>
+    <li><a href="https://www.facebook.com/profile.php?id=100011722488676" (click)="toggleNav()">Facebook</a></li>
   </ul>
 </div>
 

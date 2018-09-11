@@ -1,4 +1,4 @@
-import {Component, HostListener, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewChecked, Component, HostListener, OnDestroy, OnInit} from '@angular/core';
 import {BatabaseService} from '../batabase.service';
 import {ActivatedRoute, Params, Router} from '@angular/router';
 import {ScrollService} from '../scroll.service';
@@ -9,12 +9,13 @@ import {RoutingService} from '../routing.service';
   templateUrl: './album-gallery-page.component.html',
   styleUrls: ['./album-gallery-page.component.css']
 })
-export class AlbumGalleryPageComponent implements OnInit, OnDestroy {
+export class AlbumGalleryPageComponent implements OnInit, AfterViewChecked, OnDestroy {
 
   albumId: number = undefined;
   thumbnails = [];
   albumName = '';
   routerLink = [];
+  haveToFixNavbar = false;
 
   constructor(private  db: BatabaseService,
               private router: Router,
@@ -44,9 +45,19 @@ export class AlbumGalleryPageComponent implements OnInit, OnDestroy {
           });
       }
     });
-    this.scroll.preventWindowScrolling();
-    this.scroll.fixNavbar();
+    this.haveToFixNavbar = true;
+    // this.scroll.preventWindowScrolling();
+    // this.scroll.fixNavbar();
   }
+
+  ngAfterViewChecked() {
+    if (this.haveToFixNavbar) {
+      this.scroll.preventWindowScrolling();
+      this.scroll.fixNavbar();
+      this.haveToFixNavbar = false;
+    }
+  }
+
 
   ngOnDestroy() {
     this.scroll.allowWindowScrolling();

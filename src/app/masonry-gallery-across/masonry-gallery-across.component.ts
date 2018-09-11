@@ -88,7 +88,7 @@ export class MasonryGalleryAcrossComponent implements OnInit, OnChanges, AfterVi
   @HostListener('window:scroll') onScroll() {
     let contPos = this.cont.nativeElement.getBoundingClientRect().bottom;
     if (!this.isScrolledNow && this.thumbnailsToShow.length > 0
-      && this.thumbnailsToShow < this.thumbnails && contPos <= window.innerHeight) {
+      && this.thumbnailsToShow < this.thumbnails && (contPos <= (window.innerHeight + 200)) ) {
       this.isScrolledNow = true;
       Observable.of('').delay(this.timeGap)
         .subscribe( x => {
@@ -163,7 +163,7 @@ export class MasonryGalleryAcrossComponent implements OnInit, OnChanges, AfterVi
 
     let thumbnailsToShowFiltered = this.thumbnailsToShow.filter(item =>  item.isLoaded);
 
-    let contW = this.cont.nativeElement.clientWidth - this.contPadding;
+    let contW = this.cont.nativeElement.clientWidth - this.contPadding - 5;
     let startItemInd = 0;
     let itemNum, summK, ind, rowH;
 
