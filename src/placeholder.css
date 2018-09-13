@@ -128,7 +128,7 @@
 }
 @media (max-aspect-ratio: 7/10) {
   .main-slider-logo {
-    width: 80%;
+    width: 60vw;
   }
 }
 .main-slider-logo:hover {
@@ -147,20 +147,34 @@
 }
 
 .main-slider-scroll span {
-  font-size: 6vh;
-  padding: 20px 50px;
-  color: rgba(255,255,255,0.5);
+  font-size: 5vw;
+  padding: 20px 20px;
+  color: white;
+  opacity: 0.5;
   transition-duration: 0.2s;
 }
 @media only screen and (max-device-width : 1024px) {
   .main-slider-logo {
-    width: 50vh;
+    width: 40vw;
+    top: 60%;
+    opacity: 0.8;
   }
   .main-slider-scroll span {
-    font-size: 7vh;
+    font-size: 5vw;
+    opacity: 0.8;
   }
+  @media (max-aspect-ratio: 7/10) {
+    .main-slider-logo {
+      width: 60vw;
+      top: 65%;
+    }
+    .main-slider-scroll span {
+      font-size: 10vw;
+    }
+  }
+
 }
 
 .main-slider-scroll span:hover {
-  color: rgba(0,0,0,0.4);
+  opacity: 0.9;
 }

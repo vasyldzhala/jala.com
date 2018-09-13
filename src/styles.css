@@ -143,8 +143,22 @@ a, a:hover, a:focus {
 
 @media (max-aspect-ratio: 7/10) {
   .logo1 img, .navbar-fixed-top .logo1 img {
-    height: 100%;
+    height: 50px;
     width: auto;
+  }
+  .bread-crumbs {
+    height: 60px;
+  }
+  .bread-crumbs a, .bread-crumbs span {
+    font-size: 20px;
+  }
+  .navbar-fixed-top .bread-crumbs {
+    height: 30px;
+  }
+  .navbar-fixed-top .bread-crumbs a, .navbar-fixed-top .bread-crumbs span {
+    font-size: 13px;
+    padding-left: 4px;
+
   }
 }
 
