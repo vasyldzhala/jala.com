@@ -1,10 +1,17 @@
+<button class="button-default burger-menu1" id="placeholder-nav-button"
+        (click)="toggleNav()">
+  <img [hidden]="navOn" src="http://jala.in.ua/img/icons/icon_burger4px1_w.svg" alt="">
+  <!--<img [hidden]="!navOn" src="http://jala.in.ua/img/icons/icon_close4px1_w.svg" alt="">-->
+</button>
+<a id="app"></a>
 <div class="main-navbar-placeholder" id="main-navbar-placeholder" [hidden]="!navbarIsFixed"></div>
 
+
 <nav class="main-navbar-container" id="main-navbar" [class.navbar-fixed-top]="navbarIsFixed">
-  <div >
+  <div>
 
     <div class="bread-crumbs">
-      <a (click)="navigateHome()" class="button-default logo1">
+      <a title="Home" (click)="navigateHome()" class="button-default logo1">
         <img src="http://jala.in.ua/img/icons/icon_jala_logo2.svg" alt="">
       </a>
 
@@ -12,17 +19,17 @@
         <span>/</span>
         <ng-container *ngIf="breadCrumbs[0].link; else str">
           <a routerLink="{{breadCrumbs[0].link}}">
-            <span>{{breadCrumbs[0].str | lowercase }}</span>
+            <span title="{{breadCrumbs[0].str}}">{{breadCrumbs[0].str | lowercase }}</span>
           </a>
         </ng-container >
         <ng-template #str>
-          <span>{{breadCrumbs[0].str | lowercase }}</span>
+          <span title="{{breadCrumbs[0].str}}">{{breadCrumbs[0].str | lowercase }}</span>
         </ng-template>
 
       </ng-container>
       <ng-container *ngIf="breadCrumbs[1]">
         <span>/</span>
-        <span >{{breadCrumbs[1].str | lowercase }}</span>
+        <span title="{{breadCrumbs[1].str}}">{{breadCrumbs[1].str | lowercase }}</span>
       </ng-container>
     </div>
 

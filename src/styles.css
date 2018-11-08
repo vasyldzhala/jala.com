@@ -79,6 +79,21 @@ a, a:hover, a:focus {
 }
 
 /*main navbar styles ********************************/
+#placeholder-nav-button {
+  position: absolute;
+  top: 60px;
+  right: 35px;
+}
+@media only screen and (max-device-width : 1024px) {
+  #placeholder-nav-button {
+    top: 40px;
+    right: 25px;
+  }
+}
+#app {
+  height: 0;
+}
+
 .main-navbar-container {
   background-color: rgba(240,240,240,0.5);
   height: 110px;
@@ -100,6 +115,9 @@ a, a:hover, a:focus {
 }
 .bread-crumbs {
   height: 110px;
+  margin-right: 60px;
+  overflow: hidden;
+  text-overflow:  ellipsis;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
@@ -112,6 +130,7 @@ a, a:hover, a:focus {
 .bread-crumbs a, .bread-crumbs span {
   font-size: 30px;
   font-weight: 400;
+  white-space: nowrap;
   padding: 5px;
   opacity: 0.8;
   transition-duration: 0.2s;
@@ -272,12 +291,12 @@ a, a:hover, a:focus {
 .nav-list li {
   list-style-type: none;
   text-align: center;
-  padding: 20px 40px;
+  padding: 15px 40px;
 }
 .nav-list li a {
   font-size: 40px;
   font-weight: 500;
-  padding: 20px 40px;
+  padding: 10px 40px;
   color: rgba(0,0,0,0.6);
 }
 .nav-list li a:hover {
